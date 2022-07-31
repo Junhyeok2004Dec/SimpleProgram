@@ -1,5 +1,5 @@
-# SimpleProgram
-Java Program With SWING
+실은 위지학 아님.
 
 
-이거위지학아님.
+위지학아님
+위지학아님
