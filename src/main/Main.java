@@ -11,16 +11,9 @@ public class Main {
 
 	private javax.swing.JPanel JPanel;
 	private JButton addButton;
-	private JTextField textField1;
-	private JTextField textField3;
-	private JCheckBox a1학년CheckBox;
-	private JCheckBox a2학년CheckBox;
-	private JCheckBox a3학년CheckBox;
-	private JCheckBox 교과외CheckBox;
+	private JButton 추가Button;
+	private JButton 회수Button;
 	private JSpinner spinner1;
-	private JLabel subjectCount;
-
-	private JTextPane textPane1;
 
 
 	public Main() {
@@ -50,8 +43,14 @@ public class Main {
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 
-				subjectCount.setText(spinner1.getValue() + "시수");
 			}
+			/**
+			 * This method gets called when a bound property is changed.
+			 *
+			 * @param evt A PropertyChangeEvent object describing the event source
+			 *            and the property that has changed.
+			 */
+
 		});
 	}
 
@@ -64,13 +63,5 @@ public class Main {
 		// TODO: place custom component creation code here
 	}
 
-	public void setData(Subject data) {
-	}
 
-	public void getData(Subject data) {
-	}
-
-	public boolean isModified(Subject data) {
-		return false;
-	}
 }
