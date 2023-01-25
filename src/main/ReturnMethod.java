@@ -9,10 +9,14 @@ public class ReturnMethod
 
 	private String name;
 	private String date;
+	private String site;
 
 
-	private ArrayList<String> site;
 	private ArrayList<Object> data;
+
+
+
+
 
 	public String getName() {
 		return name;
@@ -24,11 +28,13 @@ public class ReturnMethod
 	return date;
 }
 
-	public ArrayList<String> getSite() {
+	public String getSite() {
 		return site;
 	}
 
 	public ReturnMethod getData() {
 		return this;
 	}
+
+
 }
