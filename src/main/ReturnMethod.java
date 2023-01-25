@@ -1,10 +1,13 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReturnMethod
+public class ReturnMethod implements Serializable
 {
 
+
+	static final long serialVersionUID = 1L;
 
 
 	private String name;
@@ -12,7 +15,8 @@ public class ReturnMethod
 	private String site;
 
 
-	private ArrayList<Object> data;
+	private ArrayList<Object> type;
+	private ArrayList<Object> bad;
 
 
 
@@ -32,9 +36,32 @@ public class ReturnMethod
 		return site;
 	}
 
-	public ReturnMethod getData() {
-		return this;
+
+
+	public ReturnMethod(String name, String date, String site,
+	                    ReturnMethod type, ArrayList<Object> bad)
+	{
+
+		this.bad=bad;
+		this.type=type;
+		this.date=date;
+		this.name=name;
+		this.site = site;
+
+
 	}
 
 
+
+
+	@Override
+	public String toString() {
+		return "ReturnMethod{" +
+				"name='" + name + '\'' +
+				", date='" + date + '\'' +
+				", site='" + site + '\'' +
+				", type=" + type +
+				", bad=" + bad +
+				'}';
+	}
 }
