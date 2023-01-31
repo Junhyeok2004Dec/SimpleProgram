@@ -3,13 +3,13 @@ package main;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CheckBEDList extends JDialog {
+public class Result extends JDialog {
 	private JPanel contentPane;
 	private JButton buttonOK;
-	private JList table1;
+	private JButton buttonCancel;
 	private JList list1;
 
-	public CheckBEDList() {
+	public Result() {
 		setContentPane(contentPane);
 		setModal(true);
 		getRootPane().setDefaultButton(buttonOK);
@@ -20,6 +20,11 @@ public class CheckBEDList extends JDialog {
 			}
 		});
 
+		buttonCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				onCancel();
+			}
+		});
 
 		// call onCancel() when cross is clicked
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -48,19 +53,9 @@ public class CheckBEDList extends JDialog {
 	}
 
 	public static void main(String[] args) {
-		CheckBEDList dialog = new CheckBEDList();
+		Result dialog = new Result();
 		dialog.pack();
 		dialog.setVisible(true);
 		System.exit(0);
-	}
-
-	public void setData(ReturnMethod data) {
-	}
-
-	public void getData(ReturnMethod data) {
-	}
-
-	public boolean isModified(ReturnMethod data) {
-		return false;
 	}
 }

@@ -1,6 +1,7 @@
 package main;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ReturnMethod implements Serializable
@@ -39,7 +40,7 @@ public class ReturnMethod implements Serializable
 
 
 	public ReturnMethod(String name, String date, String site,
-	                    ReturnMethod type, ArrayList<Object> bad)
+	                    ArrayList<Object> type, ArrayList<Object> bad)
 	{
 
 		this.bad=bad;

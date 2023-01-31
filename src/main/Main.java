@@ -38,6 +38,14 @@ public class Main {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				Result result = new Result();
+				result.pack();
+				JPanel.setVisible(false);
+				result.setVisible(true);
+				JPanel.setVisible(true);
+
+
+
 			}
 		});
 		spinner1.addComponentListener(new ComponentAdapter() {

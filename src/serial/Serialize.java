@@ -1,20 +1,19 @@
 package serial;
 
 import main.ReturnMethod;
-import main.Serialize;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Vector;
 
 public class Serialize implements Serializable {
 
 
+	/**
+
 	public static void main(String[] args) {
 		Serialize manage = new Serialize();
-		String fullPath = "/Users/choejeong-gyun/Documents/test.md";
+		String fullPath = "src/assets/data.manifest";
 
 		ReturnMethod dto = new ReturnMethod("고령화", "1992/12/21", "대한민국",
 				new ReturnMethod("1","2","3",null,null), null);
@@ -48,5 +47,5 @@ public class Serialize implements Serializable {
 			}
 		}
 	}
-}
+} */
 }
