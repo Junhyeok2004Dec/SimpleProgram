@@ -1,35 +1,36 @@
 package main;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
 
 	private javax.swing.JPanel JPanel;
-	private JButton addButton;
-	private JButton 추가Button;
-	private JButton 목록확인Button;
-	private JSpinner spinner1;
+	private JButton 접속버튼;
 
-	private JTextField textField1;
-	private JTextField textField2, textField3;
 
-	private JComboBox comboBox1;
 
 	private JLabel date;
-	private JRadioButton 사용RadioButton;
-	private JRadioButton 회수RadioButton;
+	private JLabel alt;
+	private JLabel velocity;
+	private JButton 카메라확인;
+	private JLabel cameraLabel;
+
+	BufferedImage bimage;
+	ImageIcon icon, newIcon;
+
 
 	public Main() {
 
 
 
-		addButton.addActionListener(new ActionListener() {
+		카메라확인.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
 			 *
@@ -38,62 +39,22 @@ public class Main {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Result result = new Result();
-				result.pack();
-				JPanel.setVisible(false);
-				result.setVisible(true);
-				JPanel.setVisible(true);
+				icon = new ImageIcon(
+						"src/assets/1d2d.png");
 
+				Image image = icon.getImage();
+				Image updateImag = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 
+				newIcon = new ImageIcon(updateImag);
 
-			}
-		});
-		spinner1.addComponentListener(new ComponentAdapter() {
-		});
-		spinner1.addPropertyChangeListener(new PropertyChangeListener() {
-			/**
-			 * This method gets called when a bound property is changed.
-			 *
-			 * @param evt A PropertyChangeEvent object describing the event source
-			 *            and the property that has changed.
-			 */
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-
-			}
-			/**
-			 * This method gets called when a bound property is changed.
-			 *
-			 * @param evt A PropertyChangeEvent object describing the event source
-			 *            and the property that has changed.
-			 */
-
-		});
-		목록확인Button.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				CheckBEDList chkbdlist = new CheckBEDList();
-				chkbdlist.pack();
-				chkbdlist.setVisible(true);
-
-
+				cameraLabel.setIcon(newIcon);
+				cameraLabel.setText("");
 			}
 		});
 	}
 
 	public JPanel getPanel() {
 		return this.JPanel;
-	}
-
-
-	private void createUIComponents() {
-		// TODO: place custom component creation code here
 	}
 
 
