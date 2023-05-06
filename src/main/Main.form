@@ -75,7 +75,7 @@
           </component>
         </children>
       </grid>
-      <grid id="45b51" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="45b51" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -85,63 +85,44 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="71296" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="71296" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="JejuGothic" size="36"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="7a72b" class="javax.swing.JLabel">
+              <component id="17745" class="javax.swing.JLabel" binding="data2">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
-                  <font name="JejuGothic" size="36"/>
-                  <text value="고도"/>
-                </properties>
-              </component>
-              <component id="17745" class="javax.swing.JLabel" binding="alt">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="JejuMyeongjo"/>
-                  <text value="781m"/>
+                  <font name="JejuMyeongjo" size="24"/>
+                  <text value="---"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="42132" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="42132" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="JejuGothic" size="36"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="ffbfe" class="javax.swing.JLabel">
+              <component id="e5a35" class="javax.swing.JLabel" binding="data1">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font name="JejuGothic" size="36"/>
-                  <text value="속도"/>
-                </properties>
-              </component>
-              <component id="e5a35" class="javax.swing.JLabel" binding="velocity">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="JejuMyeongjo"/>
-                  <text value="52.1 m/s"/>
+                  <font name="JejuMyeongjo" size="24"/>
+                  <text value="---"/>
                 </properties>
               </component>
             </children>
@@ -149,7 +130,7 @@
           <grid id="dc361" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="JejuGothic" size="36"/>
@@ -168,6 +149,32 @@
               </vspacer>
             </children>
           </grid>
+          <component id="5742" class="javax.swing.JComboBox" binding="dataBox">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JejuGothic" size="28"/>
+              <model>
+                <item value="고도"/>
+                <item value="속도"/>
+                <item value="예상도착시간"/>
+              </model>
+            </properties>
+          </component>
+          <component id="57b6e" class="javax.swing.JComboBox" binding="dataBox2">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JejuGothic" size="28"/>
+              <model>
+                <item value="고도"/>
+                <item value="속도"/>
+                <item value="예상도착시간"/>
+              </model>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="ad02a" class="javax.swing.JLabel" binding="date">
