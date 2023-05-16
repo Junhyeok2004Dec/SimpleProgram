@@ -7,6 +7,7 @@ public class Data {
 
 	private float[] sensorData;
 	Image image;
+	Position position;
 
 	public Data() {
 
@@ -22,6 +23,17 @@ public class Data {
 	}
 
 
+	public float[] getSensorData() {
+		return sensorData;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
 
 	@Override
 	public String toString() {

@@ -32,6 +32,11 @@ public class Main {
 	private JLabel cameraLabel;
 	private JComboBox dataBox2;
 	private JComboBox dataBox;
+	private JButton upBtn;
+	private JButton leftBtn;
+	private JButton rightBtn;
+	private JButton downBtn;
+	private JLabel position;
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -39,6 +44,7 @@ public class Main {
 
 	public Main() {
 
+		Data data = new Data();
 
 
 		카메라확인.addActionListener(new ActionListener() {
@@ -76,7 +82,7 @@ public class Main {
 						"src/assets/image.png");
 
 				Image image = icon.getImage();
-				Image updateImag = image.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+				Image updateImag = image.getScaledInstance(640, 480, Image.SCALE_SMOOTH);
 
 				newIcon = new ImageIcon(updateImag);
 
@@ -85,7 +91,7 @@ public class Main {
 
 				Date dateClass = new Date();
 
-				date.setText(dateClass.getDate());
+				date.setText(dateClass.getDate() + " " + dateClass.getTime());
 			}
 		});
 		dataBox2.addActionListener(new ActionListener() {
@@ -128,6 +134,17 @@ public class Main {
 						data2.setText(String.valueOf(79.2)+"초");
 						break;
 				}
+			}
+		});
+		leftBtn.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 	}
