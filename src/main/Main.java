@@ -1,15 +1,10 @@
 package main;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-
 
 
 enum tempData {;
@@ -36,7 +31,7 @@ public class Main {
 	private JButton leftBtn;
 	private JButton rightBtn;
 	private JButton downBtn;
-	private JLabel position;
+	private JLabel pos;
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -45,6 +40,8 @@ public class Main {
 	public Main() {
 
 		Data data = new Data();
+		data.position = new Position(0d,0d);
+
 
 
 		카메라확인.addActionListener(new ActionListener() {
@@ -91,7 +88,7 @@ public class Main {
 
 				Date dateClass = new Date();
 
-				date.setText(dateClass.getDate() + " " + dateClass.getTime());
+				date.setText(dateClass.getDate() + " " + dateClass.getTime() + "  서버 IP : 192.168.0.5:16000");
 			}
 		});
 		dataBox2.addActionListener(new ActionListener() {
@@ -144,8 +141,54 @@ public class Main {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				data.position.subY();
+				pos.setText(data.position.toString());
 
 			}
+
+
+		});
+		rightBtn.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.position.addX();
+				pos.setText(data.position.toString());
+			}
+
+
+		});
+		upBtn.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.position.addY();
+				pos.setText(data.position.toString());
+			}
+
+
+		});
+		downBtn.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.position.subY();
+				pos.setText(data.position.toString());
+			}
+
+
 		});
 	}
 

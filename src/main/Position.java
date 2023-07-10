@@ -13,6 +13,12 @@ public class Position extends Data {
 
 	}
 
+	public Position(double v, double v1) {
+		this.x = v;
+		this.y = v1;
+
+	}
+
 	public Vector<Double> Position(double x, double y) {
 		return new Vector<Double>(Arrays.asList(x,y));
 	}
@@ -23,14 +29,24 @@ public class Position extends Data {
 	public void addY() {
 		this.y ++;
 	}
+	public void subX() {
+		this.x --;
+	}
+	public void subY() {
+		this.y --;
+	}
 
-	public void addX(Double x) {
+	public void modX(Double x) {
 		this.x += x;
 	}
 
-	public void addY(Double y) {
+	public void modY(Double y) {
 		this.y += y;
 	}
 
+	@Override
+	public String toString() {
+		return "(" + this.x + "," + this.y + ")";
 
+	}
 }

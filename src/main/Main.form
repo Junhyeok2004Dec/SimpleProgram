@@ -92,7 +92,7 @@
                   <text value="▼"/>
                 </properties>
               </component>
-              <component id="5cc1b" class="javax.swing.JLabel" binding="position">
+              <component id="5cc1b" class="javax.swing.JLabel" binding="pos">
                 <constraints border-constraint="Center"/>
                 <properties>
                   <text value="(0,0)"/>
@@ -117,7 +117,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
-          <font name="JejuHallasan" size="72"/>
+          <font name="JejuMyeongjo" size="72"/>
           <text value="지상관제센터"/>
         </properties>
       </component>
