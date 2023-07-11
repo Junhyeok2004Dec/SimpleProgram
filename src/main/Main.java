@@ -27,10 +27,9 @@ public class Main {
 	private JLabel cameraLabel;
 	private JComboBox dataBox2;
 	private JComboBox dataBox;
-	private JButton upBtn;
 	private JButton leftBtn;
 	private JButton rightBtn;
-	private JButton downBtn;
+
 	private JLabel pos;
 
 	BufferedImage bimage;
@@ -141,7 +140,7 @@ public class Main {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				data.position.subY();
+				data.position.subX();
 				pos.setText(data.position.toString());
 
 			}
@@ -162,34 +161,7 @@ public class Main {
 
 
 		});
-		upBtn.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				data.position.addY();
-				pos.setText(data.position.toString());
-			}
 
-
-		});
-		downBtn.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				data.position.subY();
-				pos.setText(data.position.toString());
-			}
-
-
-		});
 	}
 
 	public JPanel getPanel() {

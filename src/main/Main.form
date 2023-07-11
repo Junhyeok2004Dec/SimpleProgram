@@ -68,12 +68,6 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="72b4e" class="javax.swing.JButton" binding="upBtn">
-                <constraints border-constraint="North"/>
-                <properties>
-                  <text value="▲"/>
-                </properties>
-              </component>
               <component id="c931a" class="javax.swing.JButton" binding="leftBtn">
                 <constraints border-constraint="West"/>
                 <properties>
@@ -84,12 +78,6 @@
                 <constraints border-constraint="East"/>
                 <properties>
                   <text value="▶"/>
-                </properties>
-              </component>
-              <component id="ee38f" class="javax.swing.JButton" binding="downBtn">
-                <constraints border-constraint="South"/>
-                <properties>
-                  <text value="▼"/>
                 </properties>
               </component>
               <component id="5cc1b" class="javax.swing.JLabel" binding="pos">
