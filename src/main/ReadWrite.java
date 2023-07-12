@@ -23,24 +23,24 @@ public class ReadWrite
     public static void main(String[] args)
     {
         // Control table address
-        short ADDR_PRO_TORQUE_ENABLE        = 60;                // Control table address is different in main.Dynamixel model
+        short ADDR_PRO_TORQUE_ENABLE        = 150;                // Control table address is different in Dynamixel model
         short ADDR_PRO_GOAL_POSITION        = 100;
-        short ADDR_PRO_PRESENT_POSITION     = 80;
+        short ADDR_PRO_PRESENT_POSITION     = 45;
 
         // Protocol version
-        int PROTOCOL_VERSION                = 2;                   // See which protocol version is used in the main.Dynamixel
+        int PROTOCOL_VERSION                = 2;                   // See which protocol version is used in the Dynamixel
 
         // Default setting
-        byte DXL_ID                         = 1;                   // main.Dynamixel ID: 1
-        int BAUDRATE                        = 1;
-        String DEVICENAME                   = "/dev/ttyUSB0";      // Check which port is being used on your controller
+        byte DXL_ID                         = 1;                   // Dynamixel ID: 1
+        int BAUDRATE                        = 152000;
+        String DEVICENAME                   = "COM8";      // Check which port is being used on your controller
         // ex) "COM1"   Linux: "/dev/ttyUSB0"
 
         byte TORQUE_ENABLE                  = 1;                   // Value for enabling the torque
         byte TORQUE_DISABLE                 = 0;                   // Value for disabling the torque
-        int DXL_MINIMUM_POSITION_VALUE      = -150000;             // main.Dynamixel will rotate between this value
-        int DXL_MAXIMUM_POSITION_VALUE      = 150000;              // and this value (note that the main.Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the main.Dynamixel you use.)
-        int DXL_MOVING_STATUS_THRESHOLD     = 20;                  // main.Dynamixel moving status threshold
+        int DXL_MINIMUM_POSITION_VALUE      = -1500;             // Dynamixel will rotate between this value
+        int DXL_MAXIMUM_POSITION_VALUE      = 1500;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
+        int DXL_MOVING_STATUS_THRESHOLD     = 20;                  // Dynamixel moving status threshold
 
         String KEY_FOR_ESCAPE               = "e";                 // Key for escape
 
@@ -50,7 +50,7 @@ public class ReadWrite
         // Instead of getch
         Scanner scanner = new Scanner(System.in);
 
-        // Initialize main.Dynamixel class for java
+        // Initialize Dynamixel class for java
         Dynamixel dynamixel = new Dynamixel();
 
         // Initialize PortHandler Structs
@@ -65,7 +65,7 @@ public class ReadWrite
         int dxl_comm_result = COMM_TX_FAIL;                        // Communication result
         int[] dxl_goal_position = new int[]{DXL_MINIMUM_POSITION_VALUE, DXL_MAXIMUM_POSITION_VALUE};         // Goal position
 
-        byte dxl_error = 0;                                        // main.Dynamixel error
+        byte dxl_error = 0;                                        // Dynamixel error
         int dxl_present_position = 0;                              // Present position
 
         // Open port
@@ -94,22 +94,20 @@ public class ReadWrite
             return;
         }
 
-        // Enable main.Dynamixel Torque
+        // Enable Dynamixel Torque
         dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
         if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
         {
-            System.out.print(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
+            //dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
+            System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
         }
         else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
         {
-
             System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
-
-
         }
         else
         {
-            System.out.println("main.Dynamixel has been successfully connected");
+            System.out.println("Dynamixel has been successfully connected");
         }
 
         while (true)
@@ -122,14 +120,14 @@ public class ReadWrite
             dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_POSITION, dxl_goal_position[index]);
             if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
             {
-
-                System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result
-                ));
-
+                // dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
+                System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
             }
             else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
             {
 
+
+                //dynamixel.printRxPacketError(PROTOCOL_VERSION, dxl_error);
                 System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
             }
 
@@ -139,11 +137,14 @@ public class ReadWrite
                 dxl_present_position = dynamixel.read4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_PRESENT_POSITION);
                 if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
                 {
+                    // dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
                     System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
                 }
                 else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
                 {
-                    System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
+                    //dynamixel.printRxPacketError(PROTOCOL_VERSION, dxl_error);
+
+                    System.out.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
                 }
 
                 System.out.printf("[ID: %d] GoalPos:%d  PresPos:%d\n", DXL_ID, dxl_goal_position[index], dxl_present_position);
@@ -161,15 +162,17 @@ public class ReadWrite
             }
         }
 
-        // Disable main.Dynamixel Torque
+        // Disable Dynamixel Torque
         dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_DISABLE);
         if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
         {
+            // dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
             System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
         }
         else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
         {
-            System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
+            //dynamixel.printRxPacketError(PROTOCOL_VERSION, dxl_error);
+            System.out.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
         }
 
         // Close port

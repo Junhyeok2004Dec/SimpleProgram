@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="broadcast_ping">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/broadcast_ping" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/bulk_read_write" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/clear_multi_turn" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/factory_reset" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/indirect_address" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/multi_port" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/ping" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/read_write" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/reboot" />
+      <root url="file://$USER_HOME$/Downloads/DynamixelSDK-3.7.31/java/protocol2.0/sync_read_write" />
+    </SOURCES>
+  </library>
+</component>

@@ -17,7 +17,8 @@ package main; /*****************************************************************
 /* Author: Ryu Woon Jung (Leon) */
 
 import com.sun.jna.Library;
-import com.sun.jna.Native;
+
+import static com.sun.jna.Native.loadLibrary;
 
 interface LibFunction extends Library
 {
@@ -167,7 +168,7 @@ interface LibFunction extends Library
 
 public class Dynamixel
 {
-  LibFunction libFunction = (LibFunction)Native.loadLibrary("dxl_x64_c", LibFunction.class);
+  LibFunction libFunction = (LibFunction) loadLibrary("dxl_x64_c", LibFunction.class);
 
   // PortHandler functions
   public int portHandler(String str)
