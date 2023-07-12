@@ -144,8 +144,6 @@ public class Main {
 				pos.setText(data.position.toString());
 
 			}
-
-
 		});
 		rightBtn.addActionListener(new ActionListener() {
 			/**

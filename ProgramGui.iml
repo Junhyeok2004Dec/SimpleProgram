@@ -10,5 +10,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="github.sarxos.webcam.capture.driver.opencv" level="application" />
     <orderEntry type="library" name="x64" level="project" />
+    <orderEntry type="library" name="mac_x64" level="project" />
+    <orderEntry type="library" name="output" level="project" />
+    <orderEntry type="library" name="jna-5.13.0" level="project" />
   </component>
 </module>
