@@ -190,7 +190,7 @@
           <model>
             <item value="고도"/>
             <item value="속도"/>
-            <item value="예상도착시간"/>
+            <item value="이동방향"/>
           </model>
         </properties>
       </component>

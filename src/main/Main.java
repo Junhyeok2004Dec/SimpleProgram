@@ -40,21 +40,30 @@ public class Main extends Thread{
 
 
 
-	public String 제목;
+	public String title, lore;
+
+
+
+	public void init() {
+		title = "미교신 상태";
+		lore = "";
+	}
+
 	public void run() {
 
 
 
 		while(true) {
+			title = dateClass.getDate() + " " + dateClass.getTime();
 
 
-			제목 = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속";
-		try {
+			try {
 
 			System.out.println(dateClass.getTime());
 
-			date.setText(제목);
+			date.setText(title);
 			dateClass.timeUpdate();
+
 
 			Thread.sleep(100);
 		}
@@ -153,13 +162,13 @@ public class Main extends Thread{
 			public void actionPerformed(ActionEvent e) {
 				switch(dataBox.getSelectedItem().toString()) {
 					case "고도":
-						data2.setText(String.valueOf(951.4413)+"m");
+						data2.setText(tempData.height+"m");
 						break;
 					case "속도":
-						data2.setText(String.valueOf(4.2)+"m/s");
+						data2.setText(tempData.velocity+"m/s");
 						break;
-					case "예상도착시간":
-						data2.setText(String.valueOf(79.2)+"초");
+					case "이동방향":
+						data2.setText(tempData.temp+","+tempData.temp);
 						break;
 				}
 			}
@@ -200,7 +209,7 @@ public class Main extends Thread{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				제목 = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속 GPS 사용중";
+				title = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속 GPS 사용중";
 			}
 		});
 	}

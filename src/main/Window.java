@@ -39,6 +39,7 @@ public class Window {
 		jFrame.setVisible(true);
 
 		main.start();
+		main.init();
 		main.run();
 
 
