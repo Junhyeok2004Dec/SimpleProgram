@@ -118,6 +118,11 @@ public class ReadWrite
 
             // Write goal position
             dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_POSITION, dxl_goal_position[index]);
+
+
+            byte[] move = new byte[4];
+
+            // 주소 확인 요함 dynamixel.writePort(1, new byte[4] , 9);
             if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
             {
                 // dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
@@ -180,4 +185,7 @@ public class ReadWrite
 
         return;
     }
+
+
+
 }

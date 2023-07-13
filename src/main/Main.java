@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 
-enum tempData {;
+interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
@@ -31,6 +31,7 @@ public class Main extends Thread{
 	private JButton rightBtn;
 
 	private JLabel pos;
+	private JButton GPS테스트시험기능Button;
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -38,17 +39,21 @@ public class Main extends Thread{
 	Date dateClass = new Date();
 
 
+
+	public String 제목;
 	public void run() {
 
 
 
 		while(true) {
 
+
+			제목 = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속";
 		try {
 
 			System.out.println(dateClass.getTime());
 
-			date.setText(dateClass.getDate() + " " + dateClass.getTime() + "  서버 IP : 192.168.0.5:16000");
+			date.setText(제목);
 			dateClass.timeUpdate();
 
 			Thread.sleep(100);
@@ -127,13 +132,13 @@ public class Main extends Thread{
 			public void actionPerformed(ActionEvent e) {
 				switch(dataBox2.getSelectedItem().toString()) {
 					case "고도":
-						data1.setText(String.valueOf(951.4413)+"m");
+						data1.setText(String.valueOf(tempData.height)+"m");
 						break;
 					case "속도":
-						data1.setText(String.valueOf(4.2)+"m/s");
+						data1.setText(String.valueOf(tempData.velocity)+"m/s");
 						break;
-					case "예상도착시간":
-						data1.setText(String.valueOf(79.2)+"초");
+					case "이동방향":
+						data1.setText(String.valueOf(tempData.temp)+"," + (tempData.temp));
 						break;
 				}
 			}
@@ -187,6 +192,17 @@ public class Main extends Thread{
 
 		});
 
+		GPS테스트시험기능Button.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				제목 = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속 GPS 사용중";
+			}
+		});
 	}
 
 

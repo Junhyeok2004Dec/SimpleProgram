@@ -88,6 +88,14 @@
               </component>
             </children>
           </grid>
+          <component id="57cc9" class="javax.swing.JButton" binding="GPS테스트시험기능Button" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="GPS 테스트 (시험기능)"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="ad02a" class="javax.swing.JLabel" binding="date">
@@ -195,7 +203,7 @@
           <model>
             <item value="고도"/>
             <item value="속도"/>
-            <item value="예상도착시간"/>
+            <item value="이동방향"/>
           </model>
         </properties>
       </component>
