@@ -13,7 +13,7 @@ enum tempData {;
 	double temp = -2.4991;
 	String element[] = {"높이", "속도", "기온"};}
 
-public class Main {
+public class Main extends Thread{
 
 	private javax.swing.JPanel JPanel;
 	private JButton 접속버튼;
@@ -35,12 +35,36 @@ public class Main {
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
 
+	Date dateClass = new Date();
+
+
+	public void run() {
+
+
+
+		while(true) {
+
+		try {
+
+			System.out.println(dateClass.getTime());
+
+			date.setText(dateClass.getDate() + " " + dateClass.getTime() + "  서버 IP : 192.168.0.5:16000");
+			dateClass.timeUpdate();
+
+			Thread.sleep(100);
+		}
+
+		catch
+		(Exception e) {
+			e.printStackTrace();
+			break;
+		}}
+	}
 
 	public Main() {
 
 		Data data = new Data();
 		data.position = new Position(0d,0d);
-
 
 
 		카메라확인.addActionListener(new ActionListener() {
@@ -85,9 +109,12 @@ public class Main {
 				cameraLabel.setIcon(newIcon);
 				cameraLabel.setText("");
 
-				Date dateClass = new Date();
 
-				date.setText(dateClass.getDate() + " " + dateClass.getTime() + "  서버 IP : 192.168.0.5:16000");
+
+
+
+
+
 			}
 		});
 		dataBox2.addActionListener(new ActionListener() {
@@ -161,6 +188,8 @@ public class Main {
 		});
 
 	}
+
+
 
 	public JPanel getPanel() {
 		return this.JPanel;

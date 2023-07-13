@@ -28,11 +28,19 @@ public class Window {
 			e.printStackTrace();
 		}
 
+		Main main = new Main();
+
+
 		JFrame jFrame = new JFrame("Application");
-		jFrame.setContentPane(new Main().getPanel());
+		jFrame.setContentPane(main.getPanel());
+
 		jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jFrame.pack();
 		jFrame.setVisible(true);
+
+		main.start();
+		main.run();
+
 
 	}
 }

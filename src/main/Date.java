@@ -2,6 +2,7 @@ package main;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,15 @@ public class Date {
 
 	public String getTime() {
 		return this.time;
+	}
+
+	public void timeUpdate() {
+		now = LocalTime.now();
+		LocalDate SeoulNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
+
+
+		this.data = SeoulNow.format(formatter);
+		this.time = now.format(formatTime);
 	}
 
 }
