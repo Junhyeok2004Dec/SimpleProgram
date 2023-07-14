@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +30,8 @@ public class Window {
 		}
 
 
+		Dimension dim = new Dimension(1280,720);
+
 		Data data = new Data();
 		Main main = new Main(data);
 		ReadWrite rw = new ReadWrite(data);
@@ -39,6 +42,7 @@ public class Window {
 		JFrame jFrame = new JFrame("Application");
 		jFrame.setContentPane(main.getPanel());
 
+		jFrame.setPreferredSize(dim);
 		jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jFrame.pack();
 		jFrame.setVisible(true);

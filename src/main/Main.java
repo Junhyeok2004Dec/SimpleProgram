@@ -46,6 +46,8 @@ public class Main extends Thread{
 
 
 
+
+
 	public void init() {
 		title = "미교신 상태";
 		lore = "";
@@ -55,11 +57,18 @@ public class Main extends Thread{
 	public void run() {
 
 
+		int x, y;
 
+		x=0;
+		y=0;
 		while(true) {
 			title = dateClass.getDate() + " " + dateClass.getTime();
+			posit.setText("(" + x + "," + y + ")");
 
 
+			x++;
+			y++;
+			y++;
 			try {
 
 			//System.out.println(dateClass.getTime());
@@ -69,7 +78,7 @@ public class Main extends Thread{
 
 
 
-			Thread.sleep(100);
+			Thread.sleep(500);
 		}
 
 		catch
@@ -83,6 +92,8 @@ public class Main extends Thread{
 
 
 	public Main(Data data) {
+
+
 
 		this.data = data;
 
