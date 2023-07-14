@@ -9,6 +9,8 @@ public class Data {
 	Image image;
 	Position position;
 
+	public int movement;
+
 	public Data() {
 
 	}
@@ -33,6 +35,19 @@ public class Data {
 
 	public Position getPosition() {
 		return position;
+	}
+
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public void setMovement(int mo) {
+		movement = mo;
+	}
+
+	public int getMovement() {
+		return movement;
 	}
 
 	@Override

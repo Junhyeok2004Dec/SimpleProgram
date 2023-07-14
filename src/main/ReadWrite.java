@@ -98,6 +98,7 @@ public class ReadWrite extends Thread
     int port_num;
 
 
+    Data data = new Data();
 
     public void init() {
 
@@ -116,7 +117,6 @@ public class ReadWrite extends Thread
     public void run() {
 
 
-        changeVelocity(0);
         port_num = dynamixel.portHandler(DEVICENAME);
 
         // Initialize PacketHandler Structs
@@ -146,6 +146,11 @@ public class ReadWrite extends Thread
 
         while (true)
         {
+
+
+
+            changeVelocity(data.getMovement());
+            System.out.println(data.getMovement());
 
             program();
             //System.out.println("Press enter to continue! (or press e then enter to quit!)");
@@ -186,7 +191,7 @@ public class ReadWrite extends Thread
             if((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS) {
                 System.err.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result) + "에러");
             }
-            System.out.printf("[ID: %d] velocity - %d\n", DXL_ID, dxl_present_velo);
+            //System.out.printf("[ID: %d] velocity - %d\n", DXL_ID, dxl_present_velo);
 
 
 
