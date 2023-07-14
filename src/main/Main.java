@@ -39,6 +39,7 @@ public class Main extends Thread{
 	Date dateClass = new Date();
 
 
+	ReadWrite rw = new ReadWrite();
 
 	public String title, lore;
 
@@ -182,6 +183,7 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				data.position.subX();
+				rw.changeVelocity(-60);
 				pos.setText(data.position.toString());
 
 			}
@@ -195,6 +197,7 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				data.position.addX();
+				rw.changeVelocity(60);
 				pos.setText(data.position.toString());
 			}
 

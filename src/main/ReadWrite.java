@@ -36,19 +36,7 @@ public class ReadWrite extends Thread
      short ADDR_PRO_PRESENT_VELOCITY         = 128;
      short ADDR_PRO_GOAL_VELOCITY            = 104;
 
-     /*
-     0 : Current Control
-     1 : Velocity Ctrl
-     2 :
-     3 : Posit Ctrl
-     4 : Extend' Posit Ctrl
-     5 : Current Pos
-     6 :
-     7 :
-     8 :
-     ..
-     16 : PWM
-      */
+
      short ADDR_OPERATING_MODE               = 11 ;
 
 
@@ -63,6 +51,22 @@ public class ReadWrite extends Thread
 
     byte TORQUE_ENABLE                  = 1;                   // Value for enabling the torque
     byte TORQUE_DISABLE                 = 0;                   // Value for disabling the torque
+
+
+
+    /*
+     0 : Current Control
+     1 : Velocity Ctrl
+     2 :
+     3 : Posit Ctrl
+     4 : Extend' Posit Ctrl
+     5 : Current Pos
+
+     */
+    byte OPERATING_MODE                 = 1;
+
+
+
     int DXL_MINIMUM_POSITION_VALUE      = 100;             // Dynamixel will rotate between this value
     int DXL_MAXIMUM_POSITION_VALUE      = 1100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
     int DXL_MOVING_STATUS_THRESHOLD     = 20;                  // Dynamixel moving status threshold
@@ -74,7 +78,7 @@ public class ReadWrite extends Thread
 
 
 //모터 제어량(속도)
-    int velo = 50;
+    private int velo;
 
 
     int index = 0;
@@ -110,6 +114,7 @@ public class ReadWrite extends Thread
 
     public void run() {
 
+        changeVelocity(0);
         port_num = dynamixel.portHandler(DEVICENAME);
 
         // Initialize PacketHandler Structs
@@ -117,15 +122,33 @@ public class ReadWrite extends Thread
 
 
 
-        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, (byte) 1);//모드 설정(오퍼레이팅 모드)
+        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
         dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+
+
+        if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
+        {
+            //dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
+            System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
+        }
+        else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
+        {
+            System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
+        }
+        else
+        {
+            System.out.println("Dynamixel has been successfully connected");
+        }
+
+
+
         while (true)
         {
 
             program();
-            System.out.println("Press enter to continue! (or press e then enter to quit!)");
-            if(scanner.nextLine().equals(KEY_FOR_ESCAPE))
-                break;
+            //System.out.println("Press enter to continue! (or press e then enter to quit!)");
+            //if(scanner.nextLine().equals(KEY_FOR_ESCAPE))
+               // break;
 
             // Write goal position
             //dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_POSITION, dxl_goal_position[index]);
@@ -133,7 +156,7 @@ public class ReadWrite extends Thread
 
 
             // Write goal Velocity
-            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, velo);
+            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, this.velo);
 
             //byte[] move = new byte[4];
 
@@ -163,8 +186,15 @@ public class ReadWrite extends Thread
             }
             System.out.printf("[ID: %d] velocity - %d\n", DXL_ID, dxl_present_velo);
 
+
+
+
             do
             {
+
+                if (OPERATING_MODE != 3) {
+                    break;
+                }
 
 
                 // Read present position
@@ -207,7 +237,7 @@ public class ReadWrite extends Thread
         // Open port
         if (dynamixel.openPort(port_num))
         {
-            System.out.println("Succeeded to open the port!");
+            //System.out.println("Succeeded to open the port!");
         }
         else
         {
@@ -220,7 +250,7 @@ public class ReadWrite extends Thread
         // Set port baudrate
         if (dynamixel.setBaudRate(port_num, BAUDRATE))
         {
-            System.out.println("Succeeded to change the baudrate!");
+            //System.out.println("Succeeded to change the baudrate!");
         }
         else
         {
@@ -233,19 +263,6 @@ public class ReadWrite extends Thread
         // Enable Dynamixel Torque
 
 
-        if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
-        {
-            //dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
-            System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
-        }
-        else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0)
-        {
-            System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
-        }
-        else
-        {
-            System.out.println("Dynamixel has been successfully connected");
-        }
 
 
 
@@ -265,6 +282,16 @@ public class ReadWrite extends Thread
         }
 
 */
+    }
+
+
+    public void changeVelocity(int amount) {
+        this.velo = amount;
+
+    }
+
+    public void accelerate(int amount) {
+        this.velo += amount;
     }
 
 
