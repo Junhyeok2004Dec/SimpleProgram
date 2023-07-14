@@ -45,6 +45,7 @@ public class ReadWrite extends Thread
 
     // Default setting
     byte DXL_ID                         = 1;                   // Dynamixel ID: 1
+    byte DXL_ID2                        = 2;
     int BAUDRATE                        = 115200;
     String DEVICENAME                   = "COM8";      // Check which port is being used on your controller
     // ex) "COM1"   Linux: "/dev/ttyUSB0"
@@ -94,6 +95,11 @@ public class ReadWrite extends Thread
     int dxl_present_position = 0;                              // Present position
     int dxl_present_velo = 0;
 
+    int dxl_present_position2 = 0;                              // Present position id2
+    int dxl_present_velo2 = 0;      //id2
+
+    //추후 배열 관련 코드로 수정예정
+
 
     int port_num;
 
@@ -128,6 +134,10 @@ public class ReadWrite extends Thread
 
         dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
         dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+
+
+        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
+        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
 
 
         if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
@@ -170,8 +180,12 @@ public class ReadWrite extends Thread
 
 
             // Write goal Velocity
-            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
 
+            if(data.getMovement() > 0) {
+                dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
+            } else {
+                    dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
+        }
             //byte[] move = new byte[4];
 
             // 주소 확인 요함 dynamixel.writePort(1, new byte[4] , 9);
