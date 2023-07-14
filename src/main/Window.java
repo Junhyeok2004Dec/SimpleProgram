@@ -29,6 +29,9 @@ public class Window {
 		}
 
 		Main main = new Main();
+		ReadWrite rw = new ReadWrite();
+
+
 
 
 		JFrame jFrame = new JFrame("Application");
@@ -39,8 +42,14 @@ public class Window {
 		jFrame.setVisible(true);
 
 		main.start();
+		rw.start();
+
 		main.init();
+		rw.init();
+
 		main.run();
+		rw.run();
+
 
 
 	}

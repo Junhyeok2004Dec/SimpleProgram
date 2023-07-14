@@ -59,7 +59,7 @@ public class Main extends Thread{
 
 			try {
 
-			System.out.println(dateClass.getTime());
+			//System.out.println(dateClass.getTime());
 
 			date.setText(title);
 			dateClass.timeUpdate();
