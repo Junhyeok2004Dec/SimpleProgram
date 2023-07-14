@@ -22,8 +22,8 @@ public class ReadWrite extends Thread
 {
 
 
-    Dynamixel dynamixel;
-    Scanner scanner;
+    Dynamixel dynamixel = new Dynamixel();
+    Scanner scanner = new Scanner(System.in);
 
 
 
@@ -44,8 +44,8 @@ public class ReadWrite extends Thread
 
     byte TORQUE_ENABLE                  = 1;                   // Value for enabling the torque
     byte TORQUE_DISABLE                 = 0;                   // Value for disabling the torque
-    int DXL_MINIMUM_POSITION_VALUE      = -1500;             // Dynamixel will rotate between this value
-    int DXL_MAXIMUM_POSITION_VALUE      = 1500;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
+    int DXL_MINIMUM_POSITION_VALUE      = 100;             // Dynamixel will rotate between this value
+    int DXL_MAXIMUM_POSITION_VALUE      = 100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
     int DXL_MOVING_STATUS_THRESHOLD     = 20;                  // Dynamixel moving status threshold
 
     String KEY_FOR_ESCAPE               = "e";                 // Key for escape
@@ -66,26 +66,32 @@ public class ReadWrite extends Thread
     int port_num;
 
 
+
+    //모터 제어
+    int Current = 0;
+
     public void init() {
 
 
-        // Initialize Dynamixel class for java
-        dynamixel = new Dynamixel();
 
         // Initialize PortHandler Structs
         // Set the port path
         // Get methods and members of PortHandlerLinux or PortHandlerWindows
-        port_num = dynamixel.portHandler(DEVICENAME);
 
-        // Initialize PacketHandler Structs
-        dynamixel.packetHandler();
 
     }
 
     public void run() {
 
+        port_num = dynamixel.portHandler(DEVICENAME);
+
+        // Initialize PacketHandler Structs
+        dynamixel.packetHandler();
+
         while (true)
         {
+
+            program();
             System.out.println("Press enter to continue! (or press e then enter to quit!)");
             if(scanner.nextLine().equals(KEY_FOR_ESCAPE))
                 break;
@@ -144,7 +150,7 @@ public class ReadWrite extends Thread
     }
 
 
-    public ReadWrite() {
+    public void program() {
 
         // Open port
         if (dynamixel.openPort(port_num))
@@ -206,18 +212,6 @@ public class ReadWrite extends Thread
         dynamixel.closePort(port_num);
     }
 
-
-    public static void main(String[] args)
-    {
-
-        ReadWrite rw = new ReadWrite();
-        //scanner = new Scanner(System.in);
-        rw.init();
-
-
-
-        return;
-    }
 
 
 
