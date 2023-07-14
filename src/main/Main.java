@@ -31,7 +31,7 @@ public class Main extends Thread{
 	private JButton rightBtn;
 
 	private JLabel pos;
-	private JButton GPS테스트시험기능Button;
+	private JLabel posit;
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -201,17 +201,7 @@ public class Main extends Thread{
 
 		});
 
-		GPS테스트시험기능Button.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				title = dateClass.getDate() + " " + dateClass.getTime() + "  서버 미접속 GPS 사용중";
-			}
-		});
+
 	}
 
 
