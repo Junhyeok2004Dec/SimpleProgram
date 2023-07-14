@@ -98,23 +98,25 @@ public class ReadWrite extends Thread
     int port_num;
 
 
-    Data data = new Data();
+    private Data data;
 
-    public void init() {
-
-
-
-
-
-        // Initialize PortHandler Structs
-        // Set the port path
-        // Get methods and members of PortHandlerLinux or PortHandlerWindows
-
-
+    public ReadWrite(Data data) {
+        this.data = data;
     }
 
 
+
+
+    public void init() {
+        data.setMovement(100);
+    }
+
+
+
+    @Override
     public void run() {
+
+
 
 
         port_num = dynamixel.portHandler(DEVICENAME);
@@ -147,9 +149,14 @@ public class ReadWrite extends Thread
         while (true)
         {
 
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+            changeVelocity(data.movement);
 
-            changeVelocity(data.getMovement());
             System.out.println(data.getMovement());
 
             program();
@@ -163,7 +170,7 @@ public class ReadWrite extends Thread
 
 
             // Write goal Velocity
-            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, velo);
+            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
 
             //byte[] move = new byte[4];
 

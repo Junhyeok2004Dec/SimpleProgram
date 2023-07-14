@@ -28,8 +28,10 @@ public class Window {
 			e.printStackTrace();
 		}
 
-		Main main = new Main();
-		ReadWrite rw = new ReadWrite();
+
+		Data data = new Data();
+		Main main = new Main(data);
+		ReadWrite rw = new ReadWrite(data);
 
 
 
@@ -42,10 +44,11 @@ public class Window {
 		jFrame.setVisible(true);
 
 		main.start();
-		rw.start();
-
 		main.init();
+
+		rw.start();
 		rw.init();
+
 
 		main.run();
 		rw.run();

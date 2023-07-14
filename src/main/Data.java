@@ -43,11 +43,14 @@ public class Data {
 	}
 
 	public void setMovement(int mo) {
-		movement = mo;
+		this.movement += mo;
+
+		System.out.println(this.getMovement());
 	}
 
 	public int getMovement() {
-		return movement;
+		System.out.println(movement);
+		return this.movement;
 	}
 
 	@Override

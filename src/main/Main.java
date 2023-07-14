@@ -15,6 +15,8 @@ interface tempData {;
 
 public class Main extends Thread{
 
+
+	private Data data;
 	private javax.swing.JPanel JPanel;
 	private JButton 접속버튼;
 
@@ -39,7 +41,6 @@ public class Main extends Thread{
 	Date dateClass = new Date();
 
 
-	ReadWrite rw = new ReadWrite();
 
 	public String title, lore;
 
@@ -50,6 +51,7 @@ public class Main extends Thread{
 		lore = "";
 	}
 
+	@Override
 	public void run() {
 
 
@@ -66,6 +68,7 @@ public class Main extends Thread{
 			dateClass.timeUpdate();
 
 
+
 			Thread.sleep(100);
 		}
 
@@ -76,9 +79,14 @@ public class Main extends Thread{
 		}}
 	}
 
+
+	public Main(Data data) {
+		this.data = data;
+	}
+
 	public Main() {
 
-		Data data = new Data();
+
 		data.position = new Position(0d,0d);
 
 
@@ -183,7 +191,7 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				data.position.subX();
-				data.setMovement(-60);
+				data.movement = -60;
 				pos.setText(data.position.toString());
 
 			}
@@ -198,7 +206,7 @@ public class Main extends Thread{
 			public void actionPerformed(ActionEvent e) {
 				data.position.addX();
 
-				data.setMovement(60);
+				data.movement = 60;
 				pos.setText(data.position.toString());
 			}
 
