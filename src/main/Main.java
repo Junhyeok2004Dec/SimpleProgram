@@ -197,6 +197,7 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				data.position.addX();
+
 				rw.changeVelocity(60);
 				pos.setText(data.position.toString());
 			}

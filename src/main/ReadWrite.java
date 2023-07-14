@@ -78,7 +78,7 @@ public class ReadWrite extends Thread
 
 
 //모터 제어량(속도)
-    private int velo;
+    public int velo;
 
 
     int index = 0;
@@ -112,7 +112,9 @@ public class ReadWrite extends Thread
 
     }
 
+
     public void run() {
+
 
         changeVelocity(0);
         port_num = dynamixel.portHandler(DEVICENAME);
@@ -156,7 +158,7 @@ public class ReadWrite extends Thread
 
 
             // Write goal Velocity
-            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, this.velo);
+            dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, velo);
 
             //byte[] move = new byte[4];
 
@@ -286,12 +288,12 @@ public class ReadWrite extends Thread
 
 
     public void changeVelocity(int amount) {
-        this.velo = amount;
+        velo = amount;
 
     }
 
     public void accelerate(int amount) {
-        this.velo += amount;
+        velo += amount;
     }
 
 
