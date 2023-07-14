@@ -80,12 +80,11 @@ public class Main extends Thread{
 	}
 
 
+
+
 	public Main(Data data) {
+
 		this.data = data;
-	}
-
-	public Main() {
-
 
 		data.position = new Position(0d,0d);
 
