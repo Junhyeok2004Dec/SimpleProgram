@@ -57,14 +57,14 @@ public class ReadWrite extends Thread
 
     // Default setting
     byte DXL_ID                         = 1;                   // Dynamixel ID: 1
-    int BAUDRATE                        = 152000;
+    int BAUDRATE                        = 115200;
     String DEVICENAME                   = "COM8";      // Check which port is being used on your controller
     // ex) "COM1"   Linux: "/dev/ttyUSB0"
 
     byte TORQUE_ENABLE                  = 1;                   // Value for enabling the torque
     byte TORQUE_DISABLE                 = 0;                   // Value for disabling the torque
     int DXL_MINIMUM_POSITION_VALUE      = 100;             // Dynamixel will rotate between this value
-    int DXL_MAXIMUM_POSITION_VALUE      = 100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
+    int DXL_MAXIMUM_POSITION_VALUE      = 1100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
     int DXL_MOVING_STATUS_THRESHOLD     = 20;                  // Dynamixel moving status threshold
 
     String KEY_FOR_ESCAPE               = "e";                 // Key for escape
@@ -99,6 +99,8 @@ public class ReadWrite extends Thread
 
 
 
+
+
         // Initialize PortHandler Structs
         // Set the port path
         // Get methods and members of PortHandlerLinux or PortHandlerWindows
@@ -113,6 +115,10 @@ public class ReadWrite extends Thread
         // Initialize PacketHandler Structs
         dynamixel.packetHandler();
 
+
+
+        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, (byte) 1);//모드 설정(오퍼레이팅 모드)
+        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
         while (true)
         {
 
@@ -225,7 +231,6 @@ public class ReadWrite extends Thread
         }
 
         // Enable Dynamixel Torque
-        dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
 
 
         if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS)
@@ -243,8 +248,6 @@ public class ReadWrite extends Thread
         }
 
 
-        int a = dynamixel.read1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE);
-        System.out.println(a);
 
 
         // Disable Dynamixel Torque
