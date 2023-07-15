@@ -57,6 +57,7 @@ public class Window {
 		main.run();
 		rw.run();
 
+
 		rw.dynamixel.closePort(rw.port_num);
 
 	}

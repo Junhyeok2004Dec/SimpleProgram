@@ -26,17 +26,17 @@ public class ReadWrite extends Thread {
 	Dynamixel dynamixel = new Dynamixel();
 	Scanner scanner = new Scanner(System.in);
 	// Control table address
-	short ADDR_PRO_TORQUE_ENABLE = 64;               // Control table address is different in Dynamixel model
+	public short ADDR_PRO_TORQUE_ENABLE = 64;               // Control table address is different in Dynamixel model
 	short ADDR_PRO_GOAL_POSITION = 116;
 	short ADDR_PRO_PRESENT_POSITION = 132;
 	short ADDR_PRO_PRESENT_VELOCITY = 128;
 	short ADDR_PRO_GOAL_VELOCITY = 104;
 	short ADDR_OPERATING_MODE = 11;
 	// Protocol version
-	int PROTOCOL_VERSION = 2;                   // See which protocol version is used in the Dynamixel
+	public int PROTOCOL_VERSION = 2;                   // See which protocol version is used in the Dynamixel
 	// Default setting
-	byte DXL_ID = 1;                   // Dynamixel ID: 1
-	byte DXL_ID2 = 2;
+	public byte DXL_ID = 1;                   // Dynamixel ID: 1
+	public byte DXL_ID2 = 2;
 	int BAUDRATE = 115200;
 	// ex) "COM1"   Linux: "/dev/ttyUSB0"
 	String DEVICENAME = "COM8";      // Check which port is being used on your controller
@@ -77,7 +77,7 @@ public class ReadWrite extends Thread {
 	//추후 배열 관련 코드로 수정예정
 
 
-	int port_num;
+	public int port_num;
 
 
 	private final Data data;
@@ -221,7 +221,18 @@ public class ReadWrite extends Thread {
 			} else {
 				index = 0;
 			}
+
+			if(Thread.interrupted()) {
+				break;
+			}
 		}
+
+
+
+
+		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, (short) 64, (byte) 0);
+		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, (short) 64, (byte) 0);
+
 
 	}
 
