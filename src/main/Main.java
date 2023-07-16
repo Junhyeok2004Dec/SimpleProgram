@@ -1,16 +1,19 @@
 package main;
 
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
+	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
 	String element[] = {"높이", "속도", "기온"};}
 
 public class Main extends Thread{
@@ -56,6 +59,10 @@ public class Main extends Thread{
 	@Override
 	public void run() {
 
+		File file = new File(tempData.path);
+
+
+
 
 		int x, y;
 
@@ -64,8 +71,9 @@ public class Main extends Thread{
 		while(true) {
 			title = dateClass.getDate() + " " + dateClass.getTime();
 			posit.setText("(" + x + "," + y + ")");
+			data.txtToObjFile(file);
 
-
+			posit.setText(data.obj.toString());
 			x++;
 			y++;
 			y++;

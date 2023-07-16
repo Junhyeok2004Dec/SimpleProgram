@@ -88,7 +88,7 @@ public class ReadWrite extends Thread {
 
 
 	public void init() {
-		data.setMovement(100);
+		data.setMovement(0);
 	}
 
 

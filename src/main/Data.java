@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.*;
+import java.io.*;
 
 public class Data {
 
@@ -10,6 +11,8 @@ public class Data {
 	Position position;
 
 	public int movement;
+	public Object obj;
+
 
 	public Data() {
 
@@ -19,9 +22,10 @@ public class Data {
 		return this;
 	}
 
-	public Data(float[] sensorData, Image image) {
+	public Data(float[] sensorData, Image image, Object obj) {
 		this.image = image;
 		this.sensorData = sensorData;
+		this.obj = obj;
 	}
 
 
@@ -48,8 +52,33 @@ public class Data {
 		System.out.println(this.getMovement());
 	}
 
+	public Object getObj() {
+		return obj;
+	}
+
+	public void setObj(Object obj) {
+		this.obj = obj;
+	}
+
+
+	public void txtToObjFile(File file) {
+		try{
+			BufferedReader br = new BufferedReader(new
+					FileReader(file));
+
+			String textstring;
+			if((textstring = br.readLine()) != null) {
+
+				this.obj = textstring;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
 	public int getMovement() {
-		System.out.println(movement);
 		return this.movement;
 	}
 
