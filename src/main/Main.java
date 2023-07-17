@@ -14,6 +14,7 @@ interface tempData {;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
 	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
+	String path2 = "C:\\Users\\cjhbu\\Desktop\\dev\\image.png";
 	String element[] = {"높이", "속도", "기온"};}
 
 public class Main extends Thread{
@@ -24,7 +25,8 @@ public class Main extends Thread{
 	private JButton 접속버튼;
 
 
-
+	private Image image;
+	private Image updateImag;
 	private JLabel date;
 	private JLabel data2;
 	private JLabel data1;
@@ -72,6 +74,20 @@ public class Main extends Thread{
 			title = dateClass.getDate() + " " + dateClass.getTime();
 			posit.setText("(" + x + "," + y + ")");
 			data.txtToObjFile(file);
+
+
+			icon = new ImageIcon(
+					tempData.path2);
+
+			image = icon.getImage();
+			updateImag = image.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+
+			newIcon = new ImageIcon(updateImag);
+
+
+			cameraLabel.setIcon(newIcon);
+			cameraLabel.setText("");
+
 
 			posit.setText(data.obj.toString());
 			x++;
@@ -138,12 +154,6 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-
-				icon = new ImageIcon(
-						"src/assets/image.png");
-
-				Image image = icon.getImage();
-				Image updateImag = image.getScaledInstance(640, 480, Image.SCALE_SMOOTH);
 
 				newIcon = new ImageIcon(updateImag);
 
