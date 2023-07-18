@@ -7,6 +7,11 @@ public class Data {
 
 
 	private float[] sensorData;
+
+	private int[] Vector; // get Vector from two var(integer, by file input stream)
+
+
+
 	Image image;
 	Position position;
 
