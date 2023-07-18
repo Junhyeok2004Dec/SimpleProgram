@@ -66,13 +66,8 @@ public class Main extends Thread{
 
 
 
-		int x, y;
-
-		x=0;
-		y=0;
 		while(true) {
 			title = dateClass.getDate() + " " + dateClass.getTime();
-			posit.setText("(" + x + "," + y + ")");
 			data.txtToObjFile(file);
 
 
@@ -90,9 +85,6 @@ public class Main extends Thread{
 
 
 			posit.setText(data.obj.toString());
-			x++;
-			y++;
-			y++;
 			try {
 
 			//System.out.println(dateClass.getTime());

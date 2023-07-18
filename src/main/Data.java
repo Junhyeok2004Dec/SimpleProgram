@@ -23,6 +23,21 @@ public class Data {
 
 	}
 
+//포지션 -> get Vector(2 - dimension -> get )
+	public void getVector2f(int e1, int e2) {
+
+		this.Vector[0] = e1;
+		this.Vector[1] = e2;
+
+	}
+
+	//getCompressed() -> {};
+	public int getE1() {
+		return this.Vector[0];
+	}
+	public int getE2() {
+		return this.Vector[1];
+	}
 	public Data getData() {
 		return this;
 	}
