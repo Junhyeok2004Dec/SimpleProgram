@@ -2,11 +2,12 @@ package main;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Data {
 
 
-	private float[] sensorData;
+	private ArrayList<String> sensorData = new ArrayList<>();
 
 	private int[] Vector; // get Vector from two var(integer, by file input stream)
 
@@ -22,6 +23,15 @@ public class Data {
 	public Data() {
 
 	}
+
+
+
+	public void addVar(float var) {
+		this.sensorData.add(String.valueOf(var));
+
+	}
+
+
 
 //포지션 -> get Vector(2 - dimension -> get )
 	public void getVector2f(int e1, int e2) {
@@ -42,16 +52,20 @@ public class Data {
 		return this;
 	}
 
-	public Data(float[] sensorData, Image image, Object obj) {
+
+
+
+
+	public Data(ArrayList<String> sensorData, Image image, Object obj) {
 		this.image = image;
 		this.sensorData = sensorData;
 		this.obj = obj;
 	}
 
 
-	public float[] getSensorData() {
-		return sensorData;
-	}
+
+
+
 
 	public Image getImage() {
 		return image;

@@ -13,8 +13,8 @@ interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
-	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
-	String path2 = "C:\\Users\\cjhbu\\Desktop\\dev\\image.png";
+	String path = "C:\\dev\\recog.txt";
+	String path2 = "C:\\dev\\image.png";
 	String element[] = {"높이", "속도", "기온"};}
 
 public class Main extends Thread{
@@ -39,6 +39,7 @@ public class Main extends Thread{
 
 	private JLabel pos;
 	private JLabel posit;
+	private JButton STOPButton;
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -63,11 +64,12 @@ public class Main extends Thread{
 
 		File file = new File(tempData.path);
 
-
-
-
 		while(true) {
+
+
 			title = dateClass.getDate() + " " + dateClass.getTime();
+
+
 			data.txtToObjFile(file);
 
 
@@ -85,23 +87,11 @@ public class Main extends Thread{
 
 
 			posit.setText(data.obj.toString());
-			try {
-
-			//System.out.println(dateClass.getTime());
 
 			date.setText(title);
 			dateClass.timeUpdate();
 
-
-
-			Thread.sleep(500);
-		}
-
-		catch
-		(Exception e) {
-			e.printStackTrace();
-			break;
-		}}
+			}
 	}
 
 
@@ -234,6 +224,20 @@ public class Main extends Thread{
 		});
 
 
+		STOPButton.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+
+				data.movement = 0;
+				pos.setText("정지");
+			}
+		});
 	}
 
 

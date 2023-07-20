@@ -86,6 +86,12 @@
                   <text value="-"/>
                 </properties>
               </component>
+              <component id="bba52" class="javax.swing.JButton" binding="STOPButton" default-binding="true">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <text value="STOP"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
