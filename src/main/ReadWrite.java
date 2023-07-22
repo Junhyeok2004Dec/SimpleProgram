@@ -142,7 +142,7 @@ public class ReadWrite extends Thread {
 
 			changeVelocity(data.movement);
 
-			System.out.println(data.getMovement());
+
 
 			program();
 			//System.out.println("Press enter to continue! (or press e then enter to quit!)");

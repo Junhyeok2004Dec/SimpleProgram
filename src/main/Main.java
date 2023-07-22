@@ -1,6 +1,5 @@
 package main;
 
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +23,7 @@ public class Main extends Thread{
 	private javax.swing.JPanel JPanel;
 	private JButton 접속버튼;
 
-
+	private JLabel titleDisplay;
 	private Image image;
 	private Image updateImag;
 	private JLabel date;
@@ -40,6 +39,8 @@ public class Main extends Thread{
 	private JLabel pos;
 	private JLabel posit;
 	private JButton STOPButton;
+	private JComboBox comboBox1;
+
 
 	BufferedImage bimage;
 	ImageIcon icon, newIcon;
@@ -49,6 +50,7 @@ public class Main extends Thread{
 
 
 	public String title, lore;
+
 	File file;
 
 
@@ -61,6 +63,7 @@ public class Main extends Thread{
 
 	@Override
 	public void run() {
+
 
 
 
@@ -92,6 +95,7 @@ public class Main extends Thread{
 			date.setText(title);
 			dateClass.timeUpdate();
 
+			System.out.println(data.mod);
 			}
 	}
 
@@ -192,7 +196,71 @@ public class Main extends Thread{
 				}
 			}
 		});
-		leftBtn.addActionListener(new ActionListener() {
+
+
+		//Manual
+
+			leftBtn.addActionListener(new ActionListener() {
+				/**
+				 * Invoked when an action occurs.
+				 *
+				 * @param e the event to be processed
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					if(data.mod != 0) {
+						pos.setText("매뉴얼 모드 전환 요함");
+					}
+
+					else {
+						data.position.subX();
+						data.movement = -100;
+						pos.setText("좌측이동");
+					}
+				}
+			});
+			rightBtn.addActionListener(new ActionListener() {
+				/**
+				 * Invoked when an action occurs.
+				 *
+				 * @param e the event to be processed
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+
+					if(data.mod != 0) {
+
+						pos.setText("매뉴얼 모드 전환 요함");
+
+				} else {
+						data.position.addX();
+						data.movement = 100;
+						pos.setText("우측이동");
+					}
+				}
+
+
+			});
+
+
+			STOPButton.addActionListener(new ActionListener() {
+				/**
+				 * Invoked when an action occurs.
+				 *
+				 * @param e the event to be processed
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+
+					data.movement = 0;
+					pos.setText("정지");
+				}
+			});
+
+		comboBox1.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
 			 *
@@ -200,42 +268,20 @@ public class Main extends Thread{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				data.position.subX();
-				data.movement = -100;
-				pos.setText("좌측이동");
-
-			}
-		});
-		rightBtn.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				data.position.addX();
-
-				data.movement = 100;
-				pos.setText("우측이동");
-			}
-
-
-		});
-
-
-		STOPButton.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-
-				data.movement = 0;
-				pos.setText("정지");
+				switch(comboBox1.getSelectedItem().toString()) {
+					case "CV":
+						titleDisplay.setText("지상관제센터 [CV]");
+						data.mod = 1;
+						break;
+					case "GPS":
+						titleDisplay.setText("지상관제센터 [GPS]");
+						data.mod = 2;
+						break;
+					case "MANUAL":
+						titleDisplay.setText("지상관제센터 [MANUAL]");
+						data.mod = 0;
+						break;
+				}
 			}
 		});
 	}

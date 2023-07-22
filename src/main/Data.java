@@ -19,6 +19,8 @@ public class Data {
 	private ArrayList<String> sensorData = new ArrayList<>();
 	private int[] Vector; // get Vector from two var(integer, by file input stream)
 
+	public int mod;
+
 
 	public Data() {
 
