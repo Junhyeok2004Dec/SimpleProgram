@@ -43,7 +43,7 @@ public class Main extends Thread{
 
 
 	BufferedImage bimage;
-	ImageIcon icon, newIcon;
+	ImageIcon icon, newIcon ,testIcon;
 
 	Date dateClass = new Date();
 
@@ -66,7 +66,6 @@ public class Main extends Thread{
 
 
 
-
 		while(true) {
 
 
@@ -76,19 +75,20 @@ public class Main extends Thread{
 			data.txtToObjFile(file);
 
 
+
 			icon = new ImageIcon(
 					tempData.path2);
+
 
 			image = icon.getImage();
 			updateImag = image.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 
 			newIcon = new ImageIcon(updateImag);
 
-
 			cameraLabel.setIcon(newIcon);
 			cameraLabel.setText("");
 
-			data.position = new Position(data.position.getX(),data.position.getY());
+			data.position = new Position(data.position.getX(), data.position.getY());
 
 			posit.setText((data.position.getX()) + "," + data.position.getY());
 
@@ -96,7 +96,12 @@ public class Main extends Thread{
 			dateClass.timeUpdate();
 
 			System.out.println(data.mod);
-			}
+
+
+
+
+		}
+
 	}
 
 
