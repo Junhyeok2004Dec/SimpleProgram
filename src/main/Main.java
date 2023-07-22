@@ -49,7 +49,7 @@ public class Main extends Thread{
 
 
 	public String title, lore;
-
+	File file;
 
 
 
@@ -62,7 +62,7 @@ public class Main extends Thread{
 	@Override
 	public void run() {
 
-		File file = new File(tempData.path);
+
 
 		while(true) {
 
@@ -85,8 +85,9 @@ public class Main extends Thread{
 			cameraLabel.setIcon(newIcon);
 			cameraLabel.setText("");
 
+			data.position = new Position(data.position.getX(),data.position.getY());
 
-			posit.setText(data.obj.toString());
+			posit.setText((data.position.getX()) + "," + data.position.getY());
 
 			date.setText(title);
 			dateClass.timeUpdate();
@@ -99,11 +100,10 @@ public class Main extends Thread{
 
 	public Main(Data data) {
 
-
+		file = new File(tempData.path);
 
 		this.data = data;
 
-		data.position = new Position(0d,0d);
 
 
 		카메라확인.addActionListener(new ActionListener() {

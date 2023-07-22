@@ -40,13 +40,14 @@ public class Position extends Data {
 		this.y --;
 	}
 
-	public void modX(Double x) {
-		this.x += x;
+	public Double getX() {
+		return x;
 	}
 
-	public void modY(Double y) {
-		this.y += y;
+	public Double getY() {
+		return y;
 	}
+
 
 	/*
 	@Override

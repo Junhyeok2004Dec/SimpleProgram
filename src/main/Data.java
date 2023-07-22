@@ -44,14 +44,6 @@ public class Data {
 
 	}
 
-	//getCompressed() -> {};
-	public int getE1() {
-		return this.Vector[0];
-	}
-
-	public int getE2() {
-		return this.Vector[1];
-	}
 
 	public Data getData() {
 		return this;
@@ -82,7 +74,6 @@ public class Data {
 	public void txtToObjFile(File file) {
 		String[] splitData;
 
-
 		try {
 
 			this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
@@ -96,7 +87,7 @@ public class Data {
 			if ((textstring = br.readLine()) != null) {
 
 				this.obj = textstring;
-				this.position.setPosition(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
+				this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
 
 
 			}
