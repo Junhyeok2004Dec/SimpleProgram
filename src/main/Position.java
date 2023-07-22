@@ -16,11 +16,15 @@ public class Position extends Data {
 	public Position(double v, double v1) {
 		this.x = v;
 		this.y = v1;
-
 	}
 
-	public Vector<Double> Position(double x, double y) {
-		return new Vector<Double>(Arrays.asList(x,y));
+
+
+	public Position(int v, int v1) {
+		this.x = v + 0.0;
+		this.y = v1 + 0.0;
+
+		//(0.0 요거 써도 됨??)
 	}
 
 	public void addX() {

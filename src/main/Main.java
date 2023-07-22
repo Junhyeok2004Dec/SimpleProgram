@@ -201,8 +201,8 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				data.position.subX();
-				data.movement = -60;
-				pos.setText(data.position.toString());
+				data.movement = -100;
+				pos.setText("좌측이동");
 
 			}
 		});
@@ -216,8 +216,8 @@ public class Main extends Thread{
 			public void actionPerformed(ActionEvent e) {
 				data.position.addX();
 
-				data.movement = 60;
-				pos.setText(data.position.toString());
+				data.movement = 100;
+				pos.setText("우측이동");
 			}
 
 

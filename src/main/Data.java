@@ -1,23 +1,23 @@
 package main;
 
 import java.awt.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Data {
 
 
-	private ArrayList<String> sensorData = new ArrayList<>();
-
-	private int[] Vector; // get Vector from two var(integer, by file input stream)
-
-
-
-	Image image;
-	Position position;
-
 	public int movement;
 	public Object obj;
+	Image image;
+	Position position;
+	private ArrayList<String> sensorData = new ArrayList<>();
+	private int[] Vector; // get Vector from two var(integer, by file input stream)
 
 
 	public Data() {
@@ -25,15 +25,18 @@ public class Data {
 	}
 
 
+	public Data(ArrayList<String> sensorData, Image image, Object obj) {
+		this.image = image;
+		this.sensorData = sensorData;
+		this.obj = obj;
+	}
 
 	public void addVar(float var) {
 		this.sensorData.add(String.valueOf(var));
 
 	}
 
-
-
-//포지션 -> get Vector(2 - dimension -> get )
+	//포지션 -> get Vector(2 - dimension -> get )
 	public void getVector2f(int e1, int e2) {
 
 		this.Vector[0] = e1;
@@ -45,27 +48,14 @@ public class Data {
 	public int getE1() {
 		return this.Vector[0];
 	}
+
 	public int getE2() {
 		return this.Vector[1];
 	}
+
 	public Data getData() {
 		return this;
 	}
-
-
-
-
-
-	public Data(ArrayList<String> sensorData, Image image, Object obj) {
-		this.image = image;
-		this.sensorData = sensorData;
-		this.obj = obj;
-	}
-
-
-
-
-
 
 	public Image getImage() {
 		return image;
@@ -76,14 +66,9 @@ public class Data {
 	}
 
 
-	public void setPosition(Position position) {
-		this.position = position;
-	}
+	public void setPosition(int e1, int e2) {
 
-	public void setMovement(int mo) {
-		this.movement += mo;
-
-		System.out.println(this.getMovement());
+		this.position = new Position(e1, e2);
 	}
 
 	public Object getObj() {
@@ -94,16 +79,26 @@ public class Data {
 		this.obj = obj;
 	}
 
-
 	public void txtToObjFile(File file) {
-		try{
+		String[] splitData;
+
+
+		try {
+
+			this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
+			splitData = (String.valueOf(this.obj)).split(",");
+
+
 			BufferedReader br = new BufferedReader(new
 					FileReader(file));
 
 			String textstring;
-			if((textstring = br.readLine()) != null) {
+			if ((textstring = br.readLine()) != null) {
 
 				this.obj = textstring;
+				this.position.setPosition(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
+
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -114,6 +109,12 @@ public class Data {
 
 	public int getMovement() {
 		return this.movement;
+	}
+
+	public void setMovement(int mo) {
+		this.movement += mo;
+
+		System.out.println(this.getMovement());
 	}
 
 	@Override
