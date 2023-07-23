@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Data {
 
@@ -90,7 +91,9 @@ public class Data {
 			if ((textstring = br.readLine()) != null) {
 
 				this.obj = textstring;
+
 				this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
+				this.sensorData = new ArrayList<>(Arrays.asList(splitData));
 
 
 			}
