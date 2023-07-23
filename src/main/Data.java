@@ -78,6 +78,7 @@ public class Data {
 
 		try {
 
+
 			this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
 			splitData = (String.valueOf(this.obj)).split(",");
 

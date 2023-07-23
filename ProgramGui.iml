@@ -12,5 +12,6 @@
     <orderEntry type="library" name="jna-5.13.0" level="project" />
     <orderEntry type="library" name="mac_x641" level="project" />
     <orderEntry type="library" name="broadcast_ping" level="project" />
+    <orderEntry type="library" name="github.sarxos.webcam.capture" level="project" />
   </component>
 </module>
