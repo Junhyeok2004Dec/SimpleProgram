@@ -27,7 +27,7 @@ public class SysLog {
 
         handler = new ConsoleHandler();
         handler.setEncoding("UTF-8");
-        handler = new FileHandler("data.csv", true);
+        handler = new FileHandler(tempData.path3, true);
         formatter = new LogFormatter();
         handler.setFormatter(formatter);
         LOG.addHandler(handler);

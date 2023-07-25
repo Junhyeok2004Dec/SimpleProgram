@@ -10,159 +10,150 @@ import java.util.Arrays;
 public class Data {
 
 
+    public int movement;
+    public Object obj;
+    Image image;
+    Position position;
+    private ArrayList<String> sensorData = new ArrayList<>();
+    private int[] Vector; // get Vector from two var(integer, by file input stream)
+
+    public int mod;
+
+    public ArrayList<String> outputs;
+
+    SysLog log = new SysLog();
+
+    public Data() {
+
+    }
 
 
+    public Data(ArrayList<String> sensorData, Image image, Object obj) {
+        this.image = image;
+        this.sensorData = sensorData;
+        this.obj = obj;
+    }
+
+    public void addVar(float var) {
+        this.sensorData.add(String.valueOf(var));
+
+    }
+
+    //포지션 -> get Vector(2 - dimension -> get )
+    public void getVector2f(int e1, int e2) {
+
+        this.Vector[0] = e1;
+        this.Vector[1] = e2;
+
+    }
 
 
+    public Data getData() {
+        return this;
+    }
 
-	public int movement;
-	public Object obj;
-	Image image;
-	Position position;
-	private ArrayList<String> sensorData = new ArrayList<>();
-	private int[] Vector; // get Vector from two var(integer, by file input stream)
+    public Image getImage() {
+        return image;
+    }
 
-	public int mod;
-
-	public ArrayList<String> outputs;
-
-	SysLog log = new SysLog();
-	public Data() {
-
-	}
+    public Position getPosition() {
+        return position;
+    }
 
 
-	public Data(ArrayList<String> sensorData, Image image, Object obj) {
-		this.image = image;
-		this.sensorData = sensorData;
-		this.obj = obj;
-	}
+    public void setPosition(int e1, int e2) {
 
-	public void addVar(float var) {
-		this.sensorData.add(String.valueOf(var));
+        this.position = new Position(e1, e2);
+    }
 
-	}
+    public Object getObj() {
+        return obj;
+    }
 
-	//포지션 -> get Vector(2 - dimension -> get )
-	public void getVector2f(int e1, int e2) {
-
-		this.Vector[0] = e1;
-		this.Vector[1] = e2;
-
-	}
+    public void setObj(Object obj) {
+        this.obj = obj;
+    }
 
 
-	public Data getData() {
-		return this;
-	}
+    public void returnData() {
+        // 규격
+        //
+        try {
+            log.init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-	public Image getImage() {
-		return image;
-	}
+        String txt = "";
 
-	public Position getPosition() {
-		return position;
-	}
+        for (String data : sensorData) {
+            txt += data;
+            txt += ",";
+        }
 
-
-	public void setPosition(int e1, int e2) {
-
-		this.position = new Position(e1, e2);
-	}
-
-	public Object getObj() {
-		return obj;
-	}
-
-	public void setObj(Object obj) {
-		this.obj = obj;
-	}
+        log.log(txt);
 
 
-	public void returnData() {
-		// 규격
-		//
-		try {
-			log.init();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+    }
 
-		String txt = ",";
+    public void txtToObjFile(File file) {
+        String[] splitData;
 
-		for(String data : sensorData) {
-			txt += data;
-			txt += ",";
-		}
-
-		log.log(txt);
+        try {
 
 
-	}
-
-	public void txtToObjFile(File file) {
-		String[] splitData;
-
-		try {
+            this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
+            splitData = (String.valueOf(this.obj)).split(",");
 
 
+            BufferedReader br = new BufferedReader(new
+                    FileReader(file));
+
+            String textstring;
+            if ((textstring = br.readLine()) != null) {
+
+                this.obj = textstring;
+
+                this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
+                this.sensorData = new ArrayList<>(Arrays.asList(splitData));
 
 
-			this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
-			splitData = (String.valueOf(this.obj)).split(",");
+            }
+        } catch (EOFException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-			BufferedReader br = new BufferedReader(new
-					FileReader(file));
+        returnData();
 
-			String textstring;
-			if ((textstring = br.readLine()) != null) {
-
-				this.obj = textstring;
-
-				this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
-				this.sensorData = new ArrayList<>(Arrays.asList(splitData));
+    }
 
 
-			}
-		} catch (EOFException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    public int getMovement() {
+        return this.movement;
+    }
+
+    public void setMovement(int mo) {
+        this.movement += mo;
+
+        System.out.println(this.getMovement());
+    }
+
+    @Override
+    public String toString() {
+        String a;
+
+        a = "image : " + image.getSource().toString() + sensorData.toString();
+        return a;
+    }
+
+    public void output(String data) {
+        //File output -> to Log (use Logger)
+
+        outputs.add(data);
 
 
-
-
-		returnData();
-
-	}
-
-
-	public int getMovement() {
-		return this.movement;
-	}
-
-	public void setMovement(int mo) {
-		this.movement += mo;
-
-		System.out.println(this.getMovement());
-	}
-
-	@Override
-	public String toString() {
-		String a;
-
-		a = "image : " + image.getSource().toString() + sensorData.toString();
-		return a;
-	}
-
-	public void output(String data) {
-			//File output -> to Log (use Logger)
-
-		outputs.add(data);
-
-
-
-	}
+    }
 }

@@ -15,8 +15,10 @@ interface tempData {;
 	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
 	String path2 = "C:\\Users\\cjhbu\\Desktop\\dev\\image.png";
 
-	String path3 = "C:\\Users\\cjhbu\\Desktop\\dev\\data.csv";
+	String path3 = "C:\\Users\\cjhbu\\Desktop\\dev\\csv\\data.csv";
+	String satellite = "KOALA-03";
 	String element[] = {"높이", "속도", "기온"};}
+
 
 public class Main extends Thread{
 
@@ -99,7 +101,11 @@ public class Main extends Thread{
 
 			System.out.println(data.mod);
 
-
+			try {
+				Thread.sleep(240) ;
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
 
 		}
 

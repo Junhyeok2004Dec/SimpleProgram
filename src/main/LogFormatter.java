@@ -9,7 +9,7 @@ public class LogFormatter extends Formatter {
 
 
     public String getHead(Handler h) {
-        return (new Date().getDate()) + " , " + (new Date().getTime()) + "" + "\n";
+        return ":: INFO OF " + tempData.satellite + " :: \n";
     }
 
     @Override
@@ -17,9 +17,9 @@ public class LogFormatter extends Formatter {
         StringBuffer sbf = new StringBuffer(2000);
         sbf.append(new Date().getDate());
 
-        sbf.append("[");
+        sbf.append(",");
         sbf.append(record.getSourceMethodName());
-        sbf.append("] ");
+        sbf.append(",");
 
         sbf.append(record.getMessage());
         sbf.append("\n");
