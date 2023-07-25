@@ -12,8 +12,10 @@ interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
-	String path = "C:\\dev\\recog.txt";
-	String path2 = "C:\\dev\\image.png";
+	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
+	String path2 = "C:\\Users\\cjhbu\\Desktop\\dev\\image.png";
+
+	String path3 = "C:\\Users\\cjhbu\\Desktop\\dev\\data.csv";
 	String element[] = {"높이", "속도", "기온"};}
 
 public class Main extends Thread{
@@ -96,7 +98,6 @@ public class Main extends Thread{
 			dateClass.timeUpdate();
 
 			System.out.println(data.mod);
-
 
 
 
@@ -273,6 +274,7 @@ public class Main extends Thread{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				switch(comboBox1.getSelectedItem().toString()) {
 					case "CV":
 						titleDisplay.setText("지상관제센터 [CV]");

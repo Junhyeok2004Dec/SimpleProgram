@@ -1,15 +1,18 @@
 package main;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Data {
+
+
+
+
+
 
 
 	public int movement;
@@ -21,7 +24,9 @@ public class Data {
 
 	public int mod;
 
+	public ArrayList<String> outputs;
 
+	SysLog log = new SysLog();
 	public Data() {
 
 	}
@@ -73,10 +78,35 @@ public class Data {
 		this.obj = obj;
 	}
 
+
+	public void returnData() {
+		// 규격
+		//
+		try {
+			log.init();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		String txt = ",";
+
+		for(String data : sensorData) {
+			txt += data;
+			txt += ",";
+		}
+
+		log.log(txt);
+
+
+	}
+
 	public void txtToObjFile(File file) {
 		String[] splitData;
 
 		try {
+
+
+
 
 			this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
 			splitData = (String.valueOf(this.obj)).split(",");
@@ -89,13 +119,22 @@ public class Data {
 			if ((textstring = br.readLine()) != null) {
 
 				this.obj = textstring;
+
 				this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
+				this.sensorData = new ArrayList<>(Arrays.asList(splitData));
 
 
 			}
+		} catch (EOFException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+
+
+		returnData();
 
 	}
 
@@ -116,5 +155,14 @@ public class Data {
 
 		a = "image : " + image.getSource().toString() + sensorData.toString();
 		return a;
+	}
+
+	public void output(String data) {
+			//File output -> to Log (use Logger)
+
+		outputs.add(data);
+
+
+
 	}
 }
