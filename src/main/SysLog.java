@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.*;
 
 public class SysLog {
@@ -14,14 +15,19 @@ public class SysLog {
 
     public void init() throws IOException {
         handlers = rootLogger.getHandlers();
+
+        if(handlers == null) {
         if (handlers[0] instanceof ConsoleHandler) {
             rootLogger.removeHandler(handlers[0]);
-        }
+        }}
         //=============================================
 
         LOG.setLevel(Level.INFO);
 
+
         handler = new ConsoleHandler();
+        handler.setEncoding("UTF-8");
+        handler = new FileHandler("data.csv", true);
         formatter = new LogFormatter();
         handler.setFormatter(formatter);
         LOG.addHandler(handler);

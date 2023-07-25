@@ -100,11 +100,6 @@ public class Main extends Thread{
 			System.out.println(data.mod);
 
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
 
 		}
 

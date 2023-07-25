@@ -88,7 +88,7 @@ public class Data {
 			throw new RuntimeException(e);
 		}
 
-		String txt = "";
+		String txt = ",";
 
 		for(String data : sensorData) {
 			txt += data;
