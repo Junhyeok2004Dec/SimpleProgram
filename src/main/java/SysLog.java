@@ -1,5 +1,3 @@
-package main;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.*;
@@ -27,7 +25,12 @@ public class SysLog {
 
         handler = new ConsoleHandler();
         handler.setEncoding("UTF-8");
-        handler = new FileHandler(tempData.path3, true);
+
+        try {
+            handler = new FileHandler(tempData.path3, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         formatter = new LogFormatter();
         handler.setFormatter(formatter);
         LOG.addHandler(handler);

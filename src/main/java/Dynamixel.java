@@ -1,4 +1,4 @@
-package main; /*******************************************************************************
+/*******************************************************************************
 * Copyright 2017 ROBOTIS CO., LTD.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -168,7 +168,7 @@ interface LibFunction extends Library
 
 public class Dynamixel
 {
-  LibFunction libFunction = (LibFunction) loadLibrary("dxl_x64_c", LibFunction.class);
+  LibFunction libFunction = (LibFunction) loadLibrary("src/main/java/dxl_x64_c", LibFunction.class);
 
   // PortHandler functions
   public int portHandler(String str)

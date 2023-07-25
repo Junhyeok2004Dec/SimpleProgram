@@ -1,5 +1,3 @@
-package main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +23,7 @@ public class Main extends Thread{
 
 	private Data data;
 	private javax.swing.JPanel JPanel;
-	private JButton 접속버튼;
+	private JButton Connect;
 
 	private JLabel titleDisplay;
 	private Image image;
@@ -33,7 +31,7 @@ public class Main extends Thread{
 	private JLabel date;
 	private JLabel data2;
 	private JLabel data1;
-	private JButton 카메라확인;
+	private JButton checkCam;
 	private JLabel cameraLabel;
 	private JComboBox dataBox2;
 	private JComboBox dataBox;
@@ -122,7 +120,7 @@ public class Main extends Thread{
 
 
 
-		카메라확인.addActionListener(new ActionListener() {
+		checkCam.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
 			 *
@@ -143,7 +141,7 @@ public class Main extends Thread{
 				cameraLabel.setText("");
 			}
 		});
-		접속버튼.addActionListener(new ActionListener() {
+		Connect.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
 			 *

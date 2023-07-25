@@ -1,5 +1,3 @@
-package main;
-
 import java.nio.DoubleBuffer;
 import java.util.Arrays;
 import java.util.Vector;
