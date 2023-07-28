@@ -1,3 +1,5 @@
+package cjh;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -66,8 +68,8 @@ public class Main extends Thread{
 	@Override
 	public void run() {
 
-
-
+		data.addVar((float) tempData.velocity);
+		data.addVar( (float)tempData.height);
 		while(true) {
 
 

@@ -1,5 +1,6 @@
+package cjh;
+
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.logging.*;
 
 public class SysLog {

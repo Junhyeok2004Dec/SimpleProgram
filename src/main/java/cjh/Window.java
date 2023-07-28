@@ -1,3 +1,5 @@
+package cjh;
+
 import javax.swing.*;
 import java.awt.*;
 

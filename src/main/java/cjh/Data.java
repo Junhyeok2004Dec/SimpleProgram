@@ -1,3 +1,5 @@
+package cjh;
+
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
@@ -94,15 +96,18 @@ public class Data {
 
     }
 
+
+
     public void txtToObjFile(File file) {
         String[] splitData;
+        ArrayList<String> sensor;
 
         try {
 
 
             this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
             splitData = (String.valueOf(this.obj)).split(",");
-
+            sensor = new ArrayList<>(Arrays.asList(splitData));
 
             BufferedReader br = new BufferedReader(new
                     FileReader(file));
@@ -113,7 +118,8 @@ public class Data {
                 this.obj = textstring;
 
                 this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
-                this.sensorData = new ArrayList<>(Arrays.asList(splitData));
+                this.sensorData = (new ArrayList<>(Arrays.asList(splitData)));
+
 
 
             }
