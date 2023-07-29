@@ -25,8 +25,7 @@ public class Window {
 
 		Dimension dim = new Dimension(1280,720);
 
-		Data data = null;
-		data = new Data();
+		Data data = new Data();
 		Main main = new Main(data);
 		ReadWrite rw = new ReadWrite(data);
 

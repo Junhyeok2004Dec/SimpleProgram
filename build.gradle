@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'application'
+    id "io.github.file5.guidesigner" version "1.0.2"
 }
 sourceSets {
     main {
@@ -48,6 +49,14 @@ tasks.named('jar') {
                 'Implementation-Version': project.version,
         'Main-Class': 'cjh.Window')
     }
+
+    dependencies {
+        implementation 'net.java.dev.jna:jna:5.13.0'
+        implementation 'com.intellij:forms_rt:7.0.3'
+
+
+    }
+
 }
 
 version = '0.1.1'
