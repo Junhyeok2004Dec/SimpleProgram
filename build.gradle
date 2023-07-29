@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+sourceSets {
+    main {
+        java {
+            srcDirs= ["src/main/java"]
+        }
+        resources {
+            srcDirs= ["src/main/assets"]
+        }
+    }
+}
+
+application {
+    mainClass = 'Window'
+}
+
+
+
+dependencies {
+    implementation 'net.java.dev.jna:jna:5.13.0'
+
+
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    version = '0.0.4'
+}
