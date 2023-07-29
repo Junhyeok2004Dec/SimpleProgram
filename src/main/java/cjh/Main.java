@@ -1,10 +1,13 @@
 package cjh;
 
+import com.sun.java.accessibility.util.AWTEventMonitor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 
@@ -33,7 +36,7 @@ public class Main extends Thread{
 	private JLabel date;
 	private JLabel data2;
 	private JLabel data1;
-	private JButton checkCam;
+	private JButton stopBtn;
 	private JLabel cameraLabel;
 	private JComboBox dataBox2;
 	private JComboBox dataBox;
@@ -46,7 +49,7 @@ public class Main extends Thread{
 	private JComboBox comboBox1;
 
 
-	BufferedImage bimage;
+	public Boolean flag = false;
 	ImageIcon icon, newIcon ,testIcon;
 
 	Date dateClass = new Date();
@@ -66,13 +69,16 @@ public class Main extends Thread{
 	}
 
 	@Override
-	public void run() {
+	public void run()  {
 
 		data.addVar((float) tempData.velocity);
-		data.addVar( (float)tempData.height);
-		while(true) {
+		data.addVar((float) tempData.height);
 
 
+		while (data.mod != -1) {
+
+
+			System.out.println(Thread.interrupted());
 			title = dateClass.getDate() + " " + dateClass.getTime();
 
 
@@ -99,21 +105,19 @@ public class Main extends Thread{
 			date.setText(title);
 			dateClass.timeUpdate();
 
-			System.out.println(data.mod);
 
-			try {
-				Thread.sleep(240) ;
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
 		}
 
+
+
+
 	}
-
-
-
-
 	public Main(Data data) {
 
 		file = new File(tempData.path);
@@ -122,27 +126,25 @@ public class Main extends Thread{
 
 
 
-		checkCam.addActionListener(new ActionListener() {
+		AWTEventMonitor.addWindowListener(new WindowAdapter() {
 			/**
-			 * Invoked when an action occurs.
+			 * Invoked when a window is in the process of being closed.
+			 * The close operation can be overridden at this point.
 			 *
-			 * @param e the event to be processed
+			 * @param e
 			 */
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void windowClosed(WindowEvent e) {
 
-				icon = new ImageIcon(
-						"src/assets/1d2d.png");
+				System.out.println(12);
+				Main.super.interrupt();
+				System.exit(0);
+				super.windowClosing(e);
 
-				Image image = icon.getImage();
-				Image updateImag = image.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-
-				newIcon = new ImageIcon(updateImag);
-
-				cameraLabel.setIcon(newIcon);
-				cameraLabel.setText("");
 			}
 		});
+
+
 		Connect.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
@@ -295,6 +297,19 @@ public class Main extends Thread{
 						data.mod = 0;
 						break;
 				}
+			}
+		});
+
+
+		stopBtn.addActionListener(new ActionListener() {
+			/**
+			 * Invoked when an action occurs.
+			 *
+			 * @param e the event to be processed
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.mod = -1;
 			}
 		});
 	}

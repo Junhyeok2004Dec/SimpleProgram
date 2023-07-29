@@ -127,7 +127,7 @@ public class ReadWrite extends Thread {
 
 
 
-		while (true) {
+		while (data.mod != -1) {
 
 			dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
 

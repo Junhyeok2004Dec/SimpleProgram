@@ -26,11 +26,11 @@ public class Window {
 		Dimension dim = new Dimension(1280,720);
 
 		Data data = new Data();
-		Main main = new Main(data);
 		ReadWrite rw = new ReadWrite(data);
 
 
 
+		Main main = new Main(data);
 
 		JFrame jFrame = new JFrame("Application");
 		jFrame.setContentPane(main.getPanel());
@@ -41,17 +41,14 @@ public class Window {
 		jFrame.setVisible(true);
 
 		main.start();
-		main.init();
 
 		rw.start();
-		rw.init();
 
 
-		main.run();
-		rw.run();
 
 
 		rw.dynamixel.closePort(rw.port_num);
+
 
 	}
 }
