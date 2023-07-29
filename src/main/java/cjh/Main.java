@@ -12,10 +12,10 @@ interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
-	String path = "C:\\Users\\cjhbu\\Desktop\\dev\\recog.txt";
-	String path2 = "C:\\Users\\cjhbu\\Desktop\\dev\\image.png";
+	String path = "C:\\dev\\recog.txt";
+	String path2 = "C:\\dev\\image.png";
+	String path3 = "C:\\dev\\csv\\data.csv";
 
-	String path3 = "C:\\Users\\cjhbu\\Desktop\\dev\\csv\\data.csv";
 	String satellite = "KOALA-03";
 	String element[] = {"높이", "속도", "기온"};}
 

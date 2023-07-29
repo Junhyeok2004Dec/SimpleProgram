@@ -14,20 +14,21 @@ sourceSets {
 }
 
 application {
-    mainClass = 'Window'
+    mainClass = 'cjh.Window'
 }
 
 
 
 dependencies {
     implementation 'net.java.dev.jna:jna:5.13.0'
-
+    implementation 'com.intellij:forms_rt:7.0.3'
 
 
 }
 
 repositories {
     mavenCentral()
+    flatDir dirs: "${rootDir}/lib"
 }
 
 
@@ -41,6 +42,12 @@ javadoc {
     options.encoding = 'UTF-8'
 }
 
-jar {
-    version = '0.0.4'
+tasks.named('jar') {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+        'Main-Class': 'cjh.Window')
+    }
 }
+
+version = '0.1.1'
