@@ -11,6 +11,7 @@ import java.lang.Math;
 public class Data {
 
 
+	public byte OPERATING_MODE = 1;
 
 //deg : n시방향 (deg = n -> n시방향);
 	public int deg = 0;
@@ -164,7 +165,6 @@ public class Data {
     public void setMovement(int mo) {
         this.movement += mo;
 
-        System.out.println(this.getMovement());
     }
 
     @Override

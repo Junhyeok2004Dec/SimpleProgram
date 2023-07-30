@@ -77,8 +77,6 @@ public class Main extends Thread{
 
 		while (data.mod != -1) {
 
-
-			System.out.println(Thread.interrupted());
 			title = dateClass.getDate() + " " + dateClass.getTime();
 
 
@@ -106,8 +104,6 @@ public class Main extends Thread{
 			dateClass.timeUpdate();
 
 
-
-			System.out.println(data.deg);
 
 				try {
 					Thread.sleep(100);
@@ -139,7 +135,6 @@ public class Main extends Thread{
 			@Override
 			public void windowClosed(WindowEvent e) {
 
-				System.out.println(12);
 				Main.super.interrupt();
 				System.exit(0);
 				super.windowClosing(e);
@@ -290,6 +285,7 @@ public class Main extends Thread{
 					case "CV":
 						titleDisplay.setText("지상관제센터 [CV]");
 						data.mod = 1;
+						data.OPERATING_MODE = 4;
 						break;
 					case "GPS":
 						titleDisplay.setText("지상관제센터 [GPS]");
@@ -298,6 +294,7 @@ public class Main extends Thread{
 					case "MANUAL":
 						titleDisplay.setText("지상관제센터 [MANUAL]");
 						data.mod = 0;
+						data.OPERATING_MODE = 1;
 						break;
 				}
 			}

@@ -24,11 +24,11 @@ public class SysLog {
         LOG.setLevel(Level.INFO);
 
 
-        handler = new ConsoleHandler();
-        handler.setEncoding("UTF-8");
 
         try {
             handler = new FileHandler(tempData.path3, true);
+			handler.setEncoding("UTF-8");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
