@@ -39,7 +39,7 @@ public class ReadWrite extends Thread {
 	public byte DXL_ID2 = 2;
 	int BAUDRATE = 115200;
 	// ex) "COM1"   Linux: "/dev/ttyUSB0"
-	String DEVICENAME = "COM8";      // Check which port is being used on your controller
+	String DEVICENAME = "COM4";      // Check which port is being used on your controller
 	byte TORQUE_ENABLE = 1;                   // Value for enabling the torque
 	byte TORQUE_DISABLE = 0;                   // Value for disabling the torque
 	/*
@@ -156,18 +156,84 @@ public class ReadWrite extends Thread {
 
 			// Write goal Velocity
 
-			if (data.getMovement() > 0) {
-				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
-				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
 
-			} else {
-				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
-				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+			if(data.mod == 0) {
+				if (data.getMovement() > 0) {
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
 
+				} 
+				
+				
+				else {
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+
+				}
 			}
 
 
+			else {
+				if(data.deg == 0) { 
+					
+						try{
 
+							// 오른쪽 당김
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 100);
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
+							Thread.sleep(2000);
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, -100);
+							Thread.sleep(1000);
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
+
+						} catch(InterruptedException e) {
+						e.printStackTrace(); 
+						}
+			}
+			
+					else if(data.deg == 1) {  // 위쪽 당김(그대로 진행)
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
+				//변동사항 없음
+			}
+			
+					else if(data.deg == 2) {  
+					
+						try{
+							// 왼쪽 당김
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 100);
+							Thread.sleep(2000);
+							
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, -100);
+							Thread.sleep(1000);
+							
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
+
+						} catch(InterruptedException e) {
+						e.printStackTrace(); 
+						}
+			}
+					else if(data.deg == 3) {  // 뒤로 돌앗
+						
+						
+						try{
+							// 왼쪽 당김
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 100);
+							Thread.sleep(5000);
+							
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, -100);
+							Thread.sleep(5000);
+							
+							dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
+
+						} catch(InterruptedException e) {
+						e.printStackTrace(); 
+						}
+			}
+
+			}
 			if ((dxl_comm_result = dynamixel.getLastTxRxResult(port_num, PROTOCOL_VERSION)) != COMM_SUCCESS) {
 				// dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
 				System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));

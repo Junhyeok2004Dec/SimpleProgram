@@ -18,6 +18,9 @@ public class LogFormatter extends Formatter {
         sbf.append(new Date().getDate());
 
         sbf.append(",");
+		sbf.append(new Date().getTime());
+		
+		sbf.append(",");
         sbf.append(record.getSourceMethodName());
         sbf.append(",");
 

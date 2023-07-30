@@ -106,6 +106,9 @@ public class Main extends Thread{
 			dateClass.timeUpdate();
 
 
+
+			System.out.println(data.deg);
+
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {

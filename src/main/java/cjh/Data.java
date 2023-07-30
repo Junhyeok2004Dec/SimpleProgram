@@ -6,9 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.lang.Math;
 
 public class Data {
 
+
+
+//deg : n시방향 (deg = n -> n시방향);
+	public int deg = 0;
 
     public int movement;
     public Object obj;
@@ -17,7 +22,7 @@ public class Data {
     private ArrayList<String> sensorData = new ArrayList<>();
     private int[] Vector; // get Vector from two var(integer, by file input stream)
 
-    public int mod;
+    public int mod = 0;
 
     public ArrayList<String> outputs;
 
@@ -120,7 +125,24 @@ public class Data {
                 this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
                 this.sensorData = (new ArrayList<>(Arrays.asList(splitData)));
 
-
+				Double degvar =( (float) Math.atan(Integer.parseInt(splitData[0])/ Integer.parseInt(splitData[1]))) * ((180/Math.PI));
+				
+				
+				
+				
+				//4방위, 오차 45도
+				if( (45 > degvar ) || (degvar >= -45)) { //0번(동)
+					deg = 0;
+				} else if ((135 > degvar )||(degvar >= 45)) { //(북)
+					deg = 1;
+				} else if ((degvar >= 135) || (degvar < -135)) { //(서)
+					deg = 2;
+				} else if (degvar < -45) { //(남)
+					deg = 3;
+				} 
+				
+				
+				
 
             }
         } catch (EOFException e) {
