@@ -18,6 +18,9 @@ interface tempData {;
 	String path = "C:\\dev\\recog.txt";
 	String path2 = "C:\\dev\\image.png";
 	String path3 = "C:\\dev\\csv\\data.csv";
+	String path4 = "C:\\dev\\xS.txt";
+	String path5 = "C:\\dev\\gps.txt";
+
 
 	String satellite = "KOALA-03";
 	String element[] = {"높이", "속도", "기온"};}

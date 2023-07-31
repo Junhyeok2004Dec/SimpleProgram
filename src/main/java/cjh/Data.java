@@ -105,26 +105,39 @@ public class Data {
 
 
     public void txtToObjFile(File file) {
-        String[] splitData;
+        String[] splitData, sd2 ,sd3 ; // 추후 2차원 배열로 수정가능하나 개수가 적으므로 존치.
         ArrayList<String> sensor;
+        BufferedReader br;
+        String textstring;
 
+        Object temp1, temp2;
         try {
 
 
             this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
-            splitData = (String.valueOf(this.obj)).split(",");
-            sensor = new ArrayList<>(Arrays.asList(splitData));
+            temp1 = new String(Files.readAllBytes(Paths.get(tempData.path4)));
+            temp2 = new String(Files.readAllBytes(Paths.get(tempData.path5)));
 
-            BufferedReader br = new BufferedReader(new
+            splitData = (String.valueOf(this.obj)).split(",");
+            //sensor = new ArrayList<>(Arrays.asList(splitData));
+
+            sd2 = (String.valueOf(temp1)).split(",");
+            sd3 = (String.valueOf(temp2)).split(",");
+
+
+            br = new BufferedReader(new
                     FileReader(file));
 
-            String textstring;
+
             if ((textstring = br.readLine()) != null) {
 
                 this.obj = textstring;
 
                 this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
                 this.sensorData = (new ArrayList<>(Arrays.asList(splitData)));
+                this.sensorData.add(String.valueOf(new ArrayList<>(Arrays.asList(sd2))));
+                this.sensorData.add(String.valueOf(new ArrayList<>(Arrays.asList(sd3))));
+
 
 				Double degvar =( (float) Math.atan(Integer.parseInt(splitData[0])/ Integer.parseInt(splitData[1]))) * ((180/Math.PI));
 				
