@@ -139,8 +139,8 @@ public class Data {
                 this.sensorData.add(String.valueOf(new ArrayList<>(Arrays.asList(sd3))));
 
 
-				Double degvar =( (float) Math.atan(Integer.parseInt(splitData[0])/ Integer.parseInt(splitData[1]))) * ((180/Math.PI));
-				
+				Double degvar =( (float) Math.atan2(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]))) * ((180/Math.PI));
+				System.out.println(degvar);
 				
 				
 				
