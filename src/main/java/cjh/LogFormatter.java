@@ -33,6 +33,11 @@ public class LogFormatter extends Formatter {
     }
 
 
+
+
+
+    
+
     public String getTail(Handler h) {
         return "Log off \n";
     }
