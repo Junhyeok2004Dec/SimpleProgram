@@ -26,7 +26,7 @@ public class Window {
 		Dimension dim = new Dimension(1280,720);
 
 		Data data = new Data();
-		//ReadWrite rw = new ReadWrite(data);
+		ReadWrite rw = new ReadWrite(data);
 
 
 
@@ -42,12 +42,12 @@ public class Window {
 
 		main.start();
 
-		//rw.start();
+		rw.start();
 
 
 
 
-		//rw.dynamixel.closePort(rw.port_num);
+		rw.dynamixel.closePort(rw.port_num);
 
 
 	}

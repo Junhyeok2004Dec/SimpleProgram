@@ -10,20 +10,20 @@ import java.lang.Math;
 
 public class Data {
 
-
-	public byte OPERATING_MODE = 1;
+    boolean change = false;
+	byte OPERATING_MODE = 1;
 
 //deg : n시방향 (deg = n -> n시방향);
-	public int deg = 0;
+	int deg = 0;
 
-    public int movement;
+    int movement;
     public Object obj;
     Image image;
     Position position;
     private ArrayList<String> sensorData = new ArrayList<>();
     private int[] Vector; // get Vector from two var(integer, by file input stream)
 
-    public int mod = 0;
+    int mod = 0;
 
     public ArrayList<String> outputs;
 
@@ -146,13 +146,13 @@ public class Data {
 				
 				//4방위, 오차 45도
 				if( (45 > degvar ) || (degvar >= -45)) { //0번(동)
-					deg = 0;
+					this.deg = 0;
 				} else if ((135 > degvar )||(degvar >= 45)) { //(북)
-					deg = 1;
+					this.deg = 1;
 				} else if ((degvar >= 135) || (degvar < -135)) { //(서)
-					deg = 2;
+					this.deg = 2;
 				} else if (degvar < -45) { //(남)
-					deg = 3;
+					this.deg = 3;
 				} 
 				
 				

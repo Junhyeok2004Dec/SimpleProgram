@@ -277,6 +277,10 @@ public class Main extends Thread{
 			});
 
 		comboBox1.addActionListener(new ActionListener() {
+
+
+
+
 			/**
 			 * Invoked when an action occurs.
 			 *
@@ -285,6 +289,8 @@ public class Main extends Thread{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+
+				data.change = true;
 				switch(comboBox1.getSelectedItem().toString()) {
 					case "CV":
 						titleDisplay.setText("지상관제센터 [CV]");

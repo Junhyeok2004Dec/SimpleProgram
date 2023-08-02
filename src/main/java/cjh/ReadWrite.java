@@ -23,15 +23,15 @@ public class ReadWrite extends Thread {
 
 	//모터 제어량(속도)
 	public int velo;
-	Dynamixel dynamixel = new Dynamixel();
+	public Dynamixel dynamixel = new Dynamixel();
 	Scanner scanner = new Scanner(System.in);
 	// Control table address
 	public short ADDR_PRO_TORQUE_ENABLE = 64;               // Control table address is different in Dynamixel model
-	short ADDR_PRO_GOAL_POSITION = 116;
-	short ADDR_PRO_PRESENT_POSITION = 132;
+	public short ADDR_PRO_GOAL_POSITION = 116;
+	public short ADDR_PRO_PRESENT_POSITION = 132;
 	short ADDR_PRO_PRESENT_VELOCITY = 128;
-	short ADDR_PRO_GOAL_VELOCITY = 104;
-	short ADDR_OPERATING_MODE = 11;
+	public short ADDR_PRO_GOAL_VELOCITY = 104;
+	public short ADDR_OPERATING_MODE = 11;
 	// Protocol version
 	public int PROTOCOL_VERSION = 2;                   // See which protocol version is used in the Dynamixel
 	// Default setting
@@ -40,8 +40,8 @@ public class ReadWrite extends Thread {
 	int BAUDRATE = 115200;
 	// ex) "COM1"   Linux: "/dev/ttyUSB0"
 	String DEVICENAME = "COM4";      // Check which port is being used on your controller
-	byte TORQUE_ENABLE = 1;                   // Value for enabling the torque
-	byte TORQUE_DISABLE = 0;                   // Value for disabling the torque
+	public byte TORQUE_ENABLE = 1;                   // Value for enabling the torque
+	public byte TORQUE_DISABLE = 0;                   // Value for disabling the torque
 	/*
 	 0 : Current Control
 	 1 : Velocity Ctrl
@@ -51,9 +51,9 @@ public class ReadWrite extends Thread {
 	 5 : Current Pos
 
 	 */
-	int DXL_MINIMUM_POSITION_VALUE = 100;             // Dynamixel will rotate between this value
-	int DXL_MAXIMUM_POSITION_VALUE = 1100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
-	int DXL_MOVING_STATUS_THRESHOLD = 20;                  // Dynamixel moving status threshold
+	public int DXL_MINIMUM_POSITION_VALUE = 100;             // Dynamixel will rotate between this value
+	public int DXL_MAXIMUM_POSITION_VALUE = 1100;              // and this value (note that the Dynamixel would not move when the position value is out of movable range. Check e-manual about the range of the Dynamixel you use.)
+	public int DXL_MOVING_STATUS_THRESHOLD = 20;                  // Dynamixel moving status threshold
 	String KEY_FOR_ESCAPE = "e";                 // Key for escape
 	int COMM_SUCCESS = 0;                   // Communication Success result value
 	int COMM_TX_FAIL = -1001;               // Communication Tx Failed
@@ -79,7 +79,7 @@ public class ReadWrite extends Thread {
 	public int port_num;
 
 
-	private final Data data;
+	private Data data;
 
 	public ReadWrite(Data data) {
 		this.data = data;
@@ -124,7 +124,7 @@ public class ReadWrite extends Thread {
 		}
 
 
-
+		boolean change;
 		while (data.mod != -1) {
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, data.OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, data.OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
@@ -155,28 +155,54 @@ public class ReadWrite extends Thread {
 
 			// Write goal Velocity
 
-			
+
+
+
 			if(data.mod == 0) {
-						System.out.println(data.OPERATING_MODE);
+
+
+
+				if(data.change) {
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_DISABLE);
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_TORQUE_ENABLE, TORQUE_DISABLE);
 
 					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, (byte) 1);//모드 설정(오퍼레이팅 모드)
 					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, (byte) 1);//모드 설정(오퍼레이팅 모드)
 
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+
+					data.change = false;
+				}
+
+
+
+
 				if (data.getMovement() > 0) {
-					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
-					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, 0);
-				}else {
+					System.out.println("온!");
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, (-1)*data.getMovement());
 					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
-					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, 0);
+				}else {
+					System.out.println("오프");
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_VELOCITY, (-1)*data.getMovement());
+					dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_VELOCITY, data.getMovement());
 
 				}
 			}
 			if(data.mod == 1) {
-				System.out.println(data.OPERATING_MODE + "asdf");
 
-				System.out.println("점ㅂ");
-				dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, (byte) 4);//모드 설정(오퍼레이팅 모드)
-				dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, (byte) 4);//모드 설정(오퍼레이팅 모드)
+
+				if (data.change) {
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_DISABLE);
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_TORQUE_ENABLE, TORQUE_DISABLE);
+
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, (byte) 4);//모드 설정(오퍼레이팅 모드)
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, (byte) 4);//모드 설정(오퍼레이팅 모드)
+
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+					dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_TORQUE_ENABLE, TORQUE_ENABLE);
+					data.change = false;
+				}
 
 
 				if(data.deg == 0) { 
@@ -199,7 +225,14 @@ public class ReadWrite extends Thread {
 
 							data.deg = -2;
 
-			}
+
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
+
+				}
 					else if(data.deg == 3) {  // 뒤로 돌앗
 						
 						
@@ -208,6 +241,8 @@ public class ReadWrite extends Thread {
 
 			}		else if (data.deg == -2) // 보류
 			{
+				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_POSITION, 0);
+				dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_PRO_GOAL_POSITION, 0);
 				
 			}
 			}
