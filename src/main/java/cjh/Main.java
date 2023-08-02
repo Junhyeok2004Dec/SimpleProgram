@@ -294,15 +294,19 @@ public class Main extends Thread{
 				switch(comboBox1.getSelectedItem().toString()) {
 					case "CV":
 						titleDisplay.setText("지상관제센터 [CV]");
+						data.change = true;
 						data.mod = 1;
 						data.OPERATING_MODE = 4;
 						break;
 					case "GPS":
 						titleDisplay.setText("지상관제센터 [GPS]");
+						data.change = true;
 						data.mod = 2;
+
 						break;
 					case "MANUAL":
 						titleDisplay.setText("지상관제센터 [MANUAL]");
+						data.change = true;
 						data.mod = 0;
 						data.OPERATING_MODE = 1;
 						break;

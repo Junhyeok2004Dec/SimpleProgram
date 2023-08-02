@@ -124,7 +124,6 @@ public class ReadWrite extends Thread {
 		}
 
 
-		boolean change;
 		while (data.mod != -1) {
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_OPERATING_MODE, data.OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, ADDR_OPERATING_MODE, data.OPERATING_MODE);//모드 설정(오퍼레이팅 모드)
