@@ -99,6 +99,7 @@ public class Main extends Thread{
 			cameraLabel.setIcon(newIcon);
 			cameraLabel.setText("");
 
+
 			data.position = new Position(data.position.getX(), data.position.getY());
 
 			posit.setText((data.position.getX()) + "," + data.position.getY());
