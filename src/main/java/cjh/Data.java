@@ -104,6 +104,8 @@ public class Data {
 
 
 
+
+
     public void txtToObjFile(File file) {
         String[] splitData, sd2 ,sd3 ; // 추후 2차원 배열로 수정가능하나 개수가 적으므로 존치.
         ArrayList<String> sensor;

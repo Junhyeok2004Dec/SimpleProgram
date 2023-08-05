@@ -20,10 +20,11 @@ interface tempData {;
 	String path3 = "C:\\dev\\csv\\data.csv";
 	String path4 = "C:\\dev\\xS.txt";
 	String path5 = "C:\\dev\\gps.txt";
-
+	String path6 = "C:\\dev\\err\\err.txt";
 
 	String satellite = "KOALA-03";
-	String element[] = {"높이", "속도", "기온"};}
+	String element[] = {"높이", "속도", "기온"};
+}
 
 
 public class Main extends Thread{

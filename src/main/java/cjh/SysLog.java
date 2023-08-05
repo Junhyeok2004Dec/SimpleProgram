@@ -26,7 +26,11 @@ public class SysLog {
 
 
         try {
+            if(LOG.getLevel() == Level.SEVERE) {
+                handler = new FileHandler(tempData.path6, true);
+            } else {
             handler = new FileHandler(tempData.path3, true);
+            }
 			handler.setEncoding("UTF-8");
 
         } catch (IOException e) {

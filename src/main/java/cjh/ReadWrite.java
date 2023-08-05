@@ -79,6 +79,10 @@ public class ReadWrite extends Thread {
 	public int port_num;
 
 
+
+	SysLog log;
+
+
 	private Data data;
 
 	public ReadWrite(Data data) {
@@ -118,7 +122,13 @@ public class ReadWrite extends Thread {
 			//dynamixel.printTxRxResult(PROTOCOL_VERSION, dxl_comm_result);
 			System.out.println(dynamixel.getTxRxResult(PROTOCOL_VERSION, dxl_comm_result));
 		} else if ((dxl_error = dynamixel.getLastRxPacketError(port_num, PROTOCOL_VERSION)) != 0) {
+
+
 			System.err.println(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
+
+			log.err(dynamixel.getRxPacketError(PROTOCOL_VERSION, dxl_error));
+
+
 		} else {
 			System.out.println("Dynamixel has been successfully connected");
 		}
@@ -136,6 +146,7 @@ public class ReadWrite extends Thread {
 				Thread.sleep(100);
 
 			} catch (InterruptedException e) {
+				log.err(e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -143,16 +154,7 @@ public class ReadWrite extends Thread {
 
 
 			program();
-			//System.out.println("Press enter to continue! (or press e then enter to quit!)");
-			//if(scanner.nextLine().equals(KEY_FOR_ESCAPE))
-			// break;
 
-			// Write goal position
-			//dynamixel.write4ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, ADDR_PRO_GOAL_POSITION, dxl_goal_position[index]);
-
-
-
-			// Write goal Velocity
 
 
 
@@ -228,6 +230,7 @@ public class ReadWrite extends Thread {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
+						log.err(e.getMessage());
 						throw new RuntimeException(e);
 					}
 
