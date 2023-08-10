@@ -97,7 +97,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="17745" class="javax.swing.JLabel" binding="data2">
+          <component id="e5a35" class="javax.swing.JLabel" binding="data1">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -118,9 +118,9 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="e5a35" class="javax.swing.JLabel" binding="data1">
+          <component id="17745" class="javax.swing.JLabel" binding="data2">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="JejuMyeongjo" size="24"/>
@@ -155,20 +155,6 @@
           </component>
         </children>
       </grid>
-      <component id="57b6e" class="javax.swing.JComboBox" binding="dataBox2">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <font name="JejuGothic" size="24"/>
-          <model>
-            <item value="고도"/>
-            <item value="속도"/>
-            <item value="이동방향"/>
-          </model>
-        </properties>
-      </component>
       <component id="63dee" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
@@ -188,19 +174,6 @@
         <properties>
           <font name="JejuGothic" size="36"/>
           <text value="1980년 01월 20일"/>
-        </properties>
-      </component>
-      <component id="5742" class="javax.swing.JComboBox" binding="dataBox">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="JejuGothic" size="24"/>
-          <model>
-            <item value="고도"/>
-            <item value="속도"/>
-            <item value="이동방향"/>
-          </model>
         </properties>
       </component>
     </children>

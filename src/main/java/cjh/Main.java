@@ -41,8 +41,6 @@ public class Main extends Thread{
 	private JLabel data2;
 	private JLabel data1;
 	private JLabel cameraLabel;
-	private JComboBox dataBox2;
-	private JComboBox dataBox;
 	private JButton leftBtn;
 	private JButton rightBtn;
 
@@ -102,12 +100,16 @@ public class Main extends Thread{
 			data.position = new Position(data.position.getX(), data.position.getY());
 
 			posit.setText((data.position.getX()) + "," + data.position.getY());
-
+ 
 			date.setText(title);
 			dateClass.timeUpdate();
 
+		try{
+			data1.setText(data.splitData3[0]+","+data.splitData3[1]);
+			data2.setText(data.splitData2[9]+","+data.splitData2[10]+","+data.splitData2[11]);
 
-
+} catch(Exception e) {
+	e.printStackTrace();}
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
@@ -126,54 +128,6 @@ public class Main extends Thread{
 
 		this.data = data;
 
-
-
-
-		dataBox2.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch(dataBox2.getSelectedItem().toString()) {
-					case "고도":
-						data1.setText(String.valueOf(tempData.height)+"m");
-						break;
-					case "속도":
-						data1.setText(String.valueOf(tempData.velocity)+"m/s");
-						break;
-					case "이동방향":
-						data1.setText(String.valueOf(tempData.temp)+"," + (tempData.temp));
-						break;
-				}
-			}
-		});
-		dataBox.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch(dataBox.getSelectedItem().toString()) {
-					case "고도":
-						data2.setText(tempData.height+"m");
-						break;
-					case "속도":
-						data2.setText(tempData.velocity+"m/s");
-						break;
-					case "이동방향":
-						data2.setText(data.getSensorData().get(2)+","+data.getSensorData().get(3)+","+data.getSensorData().get(0));
-						break;
-				}
-			}
-		});
-
-
-		//Manual
 
 			leftBtn.addActionListener(new ActionListener() {
 				/**
