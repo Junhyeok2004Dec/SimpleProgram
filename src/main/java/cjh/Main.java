@@ -74,8 +74,6 @@ public class Main extends Thread{
 	@Override
 	public void run()  {
 
-		data.addVar((float) tempData.velocity);
-		data.addVar((float) tempData.height);
 
 
 		while (data.mod != -1) {
@@ -99,6 +97,7 @@ public class Main extends Thread{
 			cameraLabel.setIcon(newIcon);
 			cameraLabel.setText("");
 
+			
 
 			data.position = new Position(data.position.getX(), data.position.getY());
 
@@ -167,7 +166,7 @@ public class Main extends Thread{
 						data2.setText(tempData.velocity+"m/s");
 						break;
 					case "이동방향":
-						data2.setText(tempData.temp+","+tempData.temp);
+						data2.setText(data.getSensorData().get(2)+","+data.getSensorData().get(3)+","+data.getSensorData().get(0));
 						break;
 				}
 			}
