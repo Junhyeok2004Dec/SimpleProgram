@@ -15,12 +15,12 @@ interface tempData {;
 	double height = 771.2;
 	double velocity = 35.23911111;
 	double temp = -2.4991;
-	String path = "C:\\dev\\recog.txt";
-	String path2 = "C:\\dev\\image.png";
-	String path3 = "C:\\dev\\csv\\data.csv";
-	String path4 = "C:\\dev\\xS.txt";
-	String path5 = "C:\\dev\\gps.txt";
-	String path6 = "C:\\dev\\err\\err.txt";
+	String path = "/home/cuka/dev/recog.txt";
+	String path2 = "/home/cuka/dev/image.png";
+	String path3 = "/home/cuka/dev/csv/data.csv";
+	String path4 = "/home/cuka/dev/xS.txt";
+	String path5 = "/home/cuka/dev/gps.txt";
+	String path6 = "/home/cuka/dev/err/err.txt";
 
 	String satellite = "KOALA-03";
 	String element[] = {"높이", "속도", "기온"};
@@ -127,24 +127,6 @@ public class Main extends Thread{
 
 		this.data = data;
 
-
-
-		AWTEventMonitor.addWindowListener(new WindowAdapter() {
-			/**
-			 * Invoked when a window is in the process of being closed.
-			 * The close operation can be overridden at this point.
-			 *
-			 * @param e
-			 */
-			@Override
-			public void windowClosed(WindowEvent e) {
-
-				Main.super.interrupt();
-				System.exit(0);
-				super.windowClosing(e);
-
-			}
-		});
 
 
 

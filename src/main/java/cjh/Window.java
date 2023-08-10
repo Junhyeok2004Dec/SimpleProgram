@@ -33,7 +33,7 @@ public class Window {
 			rw.start();
 			rw.dynamixel.closePort(rw.port_num);
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 
 		Main main = new Main(data);
