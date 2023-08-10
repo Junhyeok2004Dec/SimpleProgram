@@ -26,9 +26,15 @@ public class Window {
 		Dimension dim = new Dimension(1280,720);
 
 		Data data = new Data();
-		ReadWrite rw = new ReadWrite(data);
 
 
+		try {
+			ReadWrite rw = new ReadWrite(data);
+			rw.start();
+			rw.dynamixel.closePort(rw.port_num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 		Main main = new Main(data);
 
@@ -42,12 +48,9 @@ public class Window {
 
 		main.start();
 
-		rw.start();
 
 
 
-
-		rw.dynamixel.closePort(rw.port_num);
 
 
 	}

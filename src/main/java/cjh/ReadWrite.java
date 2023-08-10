@@ -23,7 +23,7 @@ public class ReadWrite extends Thread {
 
 	//모터 제어량(속도)
 	public int velo;
-	public Dynamixel dynamixel = new Dynamixel();
+	public Dynamixel dynamixel;
 	Scanner scanner = new Scanner(System.in);
 	// Control table address
 	public short ADDR_PRO_TORQUE_ENABLE = 64;               // Control table address is different in Dynamixel model
@@ -98,6 +98,9 @@ public class ReadWrite extends Thread {
 	@Override
 	public void run() {
 
+
+		try{
+			dynamixel = new Dynamixel();
 
 
 		port_num = dynamixel.portHandler(DEVICENAME);
@@ -313,7 +316,10 @@ public class ReadWrite extends Thread {
 
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID, (short) 64, (byte) 0);
 		dynamixel.write1ByteTxRx(port_num, PROTOCOL_VERSION, DXL_ID2, (short) 64, (byte) 0);
-
+		} catch(Exception e) {
+			log.err(e.getMessage());
+			e.printStackTrace();
+		}
 
 	}
 

@@ -40,7 +40,6 @@ public class Main extends Thread{
 	private JLabel date;
 	private JLabel data2;
 	private JLabel data1;
-	private JButton stopBtn;
 	private JLabel cameraLabel;
 	private JComboBox dataBox2;
 	private JComboBox dataBox;
@@ -148,29 +147,7 @@ public class Main extends Thread{
 		});
 
 
-		Connect.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
 
-
-				newIcon = new ImageIcon(updateImag);
-
-				cameraLabel.setIcon(newIcon);
-				cameraLabel.setText("");
-
-
-
-
-
-
-
-			}
-		});
 		dataBox2.addActionListener(new ActionListener() {
 			/**
 			 * Invoked when an action occurs.
@@ -316,17 +293,6 @@ public class Main extends Thread{
 		});
 
 
-		stopBtn.addActionListener(new ActionListener() {
-			/**
-			 * Invoked when an action occurs.
-			 *
-			 * @param e the event to be processed
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				data.mod = -1;
-			}
-		});
 	}
 
 
