@@ -3,11 +3,13 @@ package cjh;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
+
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.lang.Math;
-
+import java.io.RandomAccessFile;
 
 //Spagetti!
 public class Data {
@@ -109,7 +111,7 @@ public class Data {
 
 
 
-
+String lastLine, sCurrentLine;
     public void txtToObjFile(File file) {
         // 추후 2차원 배열로 수정가능하나 개수가 적으므로 존치.
         ArrayList<String> sensor;
@@ -119,24 +121,30 @@ public class Data {
         Object temp1, temp2;
         try {
 
-
+            br = new BufferedReader(new FileReader(tempData.path5));
             this.obj = new String(Files.readAllBytes(Paths.get(tempData.path)));
             this.obj1 = new String(Files.readAllBytes(Paths.get(tempData.path4)));
-            this.obj2 = new String(Files.readAllBytes(Paths.get(tempData.path5)));
 
+            lastLine = "";
+
+            while ((sCurrentLine = br.readLine()) != null) 
+            {
+                System.out.println(sCurrentLine);
+                lastLine = sCurrentLine;
+            }
+            
+            this.obj2 = lastLine;
             splitData = (String.valueOf(this.obj)).split(",");
             splitData2 = (String.valueOf(this.obj1)).split(",");
             splitData3 = (String.valueOf(this.obj2)).split(",");
+                
+
+
+            
 
 
 
-            br = new BufferedReader(new
-                    FileReader(file));
-
-
-            if ((textstring = br.readLine()) != null) {
-
-                this.obj = textstring;
+                
 
                 this.position = new Position(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
                 this.sensorData = (new ArrayList<>(Arrays.asList(splitData)));
@@ -161,7 +169,7 @@ public class Data {
 				
 				
 
-            }
+            
         } catch (EOFException e) {
             e.printStackTrace();
         } catch (IOException e) {
